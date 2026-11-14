@@ -13,8 +13,15 @@
   <header class="header">
     <div class="container header__inner">
       <a href="#" class="logo">
-        <!-- Если картинка в корне, путь должен быть просто logo.jpg -->
-        <img src="logo.jpg" alt="Velto Logo" class="logo__img">
+        <!-- Логотип встроен прямо в код (SVG) -->
+        <svg class="logo__img" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="20" fill="#0a1210"/>
+          <path d="M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z" fill="#00d1b2"/>
+          <path d="M50 25C35.64 25 24 35.75 24 49C24 56.5 28 63.25 34 67.5V79L44 71.5C46 72 48 72 50 72C64.36 72 76 61.25 76 49C76 35.75 64.36 25 50 25Z" fill="#0a1210"/>
+          <circle cx="36" cy="49" r="5" fill="#ffffff"/>
+          <circle cx="50" cy="49" r="5" fill="#ffffff"/>
+          <circle cx="64" cy="49" r="5" fill="#ffffff"/>
+        </svg>
         Velto<span>.</span>
       </a>
       <nav class="nav">
@@ -72,6 +79,7 @@
       <h2>Начни общаться прямо сейчас</h2>
       <p>Совсем скоро Velto появится в RuStore</p>
       <div class="download__buttons">
+        <!-- Сюда потом вставишь реальную ссылку на RuStore -->
         <a href="#" class="btn btn--store">📱 Скачать в RuStore</a>
       </div>
     </div>
