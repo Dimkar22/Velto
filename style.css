@@ -279,4 +279,92 @@ img { pointer-events: none; -webkit-user-drag: none; }
 
 /* --- Footer --- */
 .footer {
-  border-top: 1px solid rgba(255,255,255,0.05); padding: 40px
+  border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; background: rgba(0,0,0,0.2);
+}
+.footer__inner {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: 14px;
+}
+.footer__info { display: flex; flex-direction: column; gap: 8px; }
+.footer__support { font-size: 15px; }
+.footer__link { color: #ffffff !important; text-decoration: none !important; font-weight: 500; transition: color 0.2s; }
+.footer__link:hover { color: var(--accent-2) !important; }
+.footer__contacts { display: flex; align-items: center; }
+
+.tg-link {
+  display: inline-flex !important; align-items: center !important; gap: 12px !important;
+  color: #ffffff !important; text-decoration: none !important; font-weight: 600; font-size: 15px;
+  background: rgba(255, 255, 255, 0.03); padding: 8px 18px 8px 8px; border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.3s, border-color 0.3s, transform 0.2s;
+}
+.tg-link:hover { background: rgba(0, 209, 178, 0.1); border-color: rgba(0, 209, 178, 0.3); transform: translateY(-2px); }
+.tg-icon-wrap {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%;
+}
+.tg-icon {
+  width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important;
+  display: block; margin-left: -2px;
+}
+
+/* --- Модальное окно --- */
+.modal {
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px);
+  z-index: 1000; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s ease;
+}
+.modal.is-active { display: flex; opacity: 1; }
+.modal__content {
+  background: var(--card); border: 1px solid #2a2c38; border-radius: 24px;
+  padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center;
+  position: relative; transform: translateY(30px) scale(0.9); 
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.modal.is-active .modal__content { transform: translateY(0) scale(1); }
+.modal__close {
+  position: absolute; top: 15px; right: 15px; background: transparent; border: none;
+  color: var(--muted); font-size: 28px; cursor: pointer; line-height: 1;
+  transition: color 0.2s, transform 0.2s;
+}
+.modal__close:hover { color: var(--text); transform: rotate(90deg); }
+.modal__icon { font-size: 48px; margin-bottom: 15px; }
+.modal__content h3 { font-size: 24px; margin-bottom: 10px; color: var(--text); }
+.modal__content p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+
+/* --- Кнопка Наверх --- */
+.scroll-top {
+  position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+  border-radius: 50%; background: var(--card); border: 1px solid #2a2c38;
+  color: var(--accent-2); display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 99; opacity: 0; visibility: hidden; transform: translateY(20px);
+  transition: opacity 0.3s, transform 0.3s, visibility 0.3s, background 0.3s;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.scroll-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+.scroll-top:hover { background: #1a1c26; border-color: var(--accent-2); }
+
+/* --- Анимация появления --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* --- Mobile --- */
+@media (max-width: 900px) {
+  .hero__inner { flex-direction: column; text-align: center; }
+  .hero__content { margin-bottom: 40px; }
+  .hero__buttons, .hero__social-proof { justify-content: center; }
+  .phone-glow { top: 40%; }
+}
+
+@media (max-width: 600px) {
+  .nav { display: none; }
+  .hero { padding: 60px 0; }
+  .marquee__content span { font-size: 16px; }
+  .footer__inner { flex-direction: column; text-align: center; align-items: center; }
+  .footer__info { align-items: center; }
+  .footer__contacts { justify-content: center; width: 100%; margin-top: 10px; }
+  .scroll-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+  .download__stats { gap: 20px; }
+  .stat-number { font-size: 28px; }
+}
