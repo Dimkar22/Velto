@@ -25,3 +25,31 @@ document.querySelectorAll('.card').forEach(card => {
   card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
   observer.observe(card);
 });
+
+// --- Логика модального окна RuStore ---
+function openModal() {
+  const modal = document.getElementById('ruStoreModal');
+  modal.classList.add('is-active');
+  document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+}
+
+function closeModal() {
+  const modal = document.getElementById('ruStoreModal');
+  modal.classList.remove('is-active');
+  document.body.style.overflow = ''; // Возвращаем скролл
+}
+
+// Закрытие окна при клике на темный фон
+window.onclick = function(event) {
+  const modal = document.getElementById('ruStoreModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+
+// Закрытие по кнопке Escape
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
