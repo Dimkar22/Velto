@@ -16,6 +16,24 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  /* Защита от выделения текста */
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* Разрешаем выделять только в полях ввода (на будущее) */
+input, textarea {
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Запрет перетаскивания картинок */
+img {
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .container {
@@ -288,25 +306,29 @@ body {
 .footer__support {
   font-size: 15px;
 }
+/* Жестко переопределяем стандартный цвет ссылки */
 .footer__link {
-  color: var(--text);
-  text-decoration: none;
+  color: #ffffff !important;
+  text-decoration: none !important;
   font-weight: 500;
   transition: color 0.2s;
 }
 .footer__link:hover {
-  color: var(--accent-2);
+  color: var(--accent-2) !important;
 }
+
 .footer__contacts {
   display: flex;
   align-items: center;
 }
+
+/* Стили для кнопки Telegram */
 .tg-link {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text);
-  text-decoration: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
   font-weight: 600;
   font-size: 15px;
   background: rgba(255, 255, 255, 0.03);
@@ -320,24 +342,30 @@ body {
   border-color: rgba(0, 209, 178, 0.3);
   transform: translateY(-2px);
 }
+
+/* Круглая подложка для иконки Telegram */
 .tg-icon-wrap {
-  display: flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: #00d1b2; /* Красивый зеленый кружок для иконки */
+  width: 32px !important;
+  height: 32px !important;
+  background: #00d1b2;
   border-radius: 50%;
 }
+/* Сама иконка (жестко ограничиваем размер) */
 .tg-icon {
-  width: 18px;
-  height: 18px;
-  margin-left: -2px; /* Центровка иконки телеграма внутри кружка */
+  width: 18px !important;
+  height: 18px !important;
+  max-width: 18px !important; 
+  max-height: 18px !important;
+  display: block;
+  margin-left: -2px; /* Легкая центровка */
 }
 
 /* --- Модальное окно RuStore --- */
 .modal {
-  display: none; /* Скрыто по умолчанию */
+  display: none;
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.8);
@@ -348,7 +376,6 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-/* Класс для плавного появления */
 .modal.is-active {
   display: flex;
   opacity: 1;
@@ -362,13 +389,11 @@ body {
   width: 90%;
   text-align: center;
   position: relative;
-  /* Начальное состояние: чуть ниже и меньше */
+  /* Анимация появления (пружинистая) */
   transform: translateY(30px) scale(0.9); 
-  /* Пружинистая анимация появления */
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
-/* Конечное состояние: плавно выезжает и увеличивается */
 .modal.is-active .modal__content {
   transform: translateY(0) scale(1);
 }
