@@ -1,4 +1,4 @@
-// Плавная прокрутка к якорям
+// --- Плавная прокрутка к якорям ---
 document.querySelectorAll('a[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     const target = document.querySelector(link.getAttribute('href'));
@@ -9,38 +9,35 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 });
 
-// Анимация появления карточек
-const observer = new IntersectionObserver(entries => {
+// --- Анимация появления секций при скролле (Reveal) ---
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
+      entry.target.classList.add('is-visible');
+      revealObserver.unobserve(entry.target); // Отключаем наблюдение после появления
     }
   });
-}, { threshold: 0.15 });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.card').forEach(card => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(20px)';
-  card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-  observer.observe(card);
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
 });
 
 // --- Логика модального окна RuStore ---
 function openModal(event) {
-  if (event) event.preventDefault(); // Блокируем стандартное поведение
+  if (event) event.preventDefault(); // Блокируем скролл наверх
   const modal = document.getElementById('ruStoreModal');
   modal.classList.add('is-active');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
 }
 
 function closeModal() {
   const modal = document.getElementById('ruStoreModal');
   modal.classList.remove('is-active');
-  document.body.style.overflow = '';
+  document.body.style.overflow = ''; // Возвращаем прокрутку
 }
 
-// Закрытие при клике на фон
+// Закрытие при клике на темный фон
 window.onclick = function(event) {
   const modal = document.getElementById('ruStoreModal');
   if (event.target === modal) {
@@ -54,6 +51,19 @@ document.addEventListener('keydown', function(event) {
     closeModal();
   }
 });
+
+// --- Кнопка "Наверх" ---
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+window.addEventListener('scroll', () => {
+  // Если прокрутили больше 300 пикселей — показываем кнопку
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('is-visible');
+  } else {
+    scrollTopBtn.classList.remove('is-visible');
+  }
+});
+
 
 // --- ЗАЩИТА КОНТЕНТА ---
 
@@ -76,7 +86,6 @@ document.addEventListener('contextmenu', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'PrintScreen' || e.keyCode === 44) {
     e.preventDefault();
-    // Очищаем буфер обмена, чтобы скриншот не сохранился
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(''); 
     }
