@@ -27,19 +27,20 @@ document.querySelectorAll('.card').forEach(card => {
 });
 
 // --- Логика модального окна RuStore ---
+// Обязательно должна быть тут, чтобы кнопка не скроллила наверх
 function openModal() {
   const modal = document.getElementById('ruStoreModal');
   modal.classList.add('is-active');
-  document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   const modal = document.getElementById('ruStoreModal');
   modal.classList.remove('is-active');
-  document.body.style.overflow = ''; // Возвращаем скролл
+  document.body.style.overflow = '';
 }
 
-// Закрытие окна при клике на темный фон
+// Закрытие при клике на фон
 window.onclick = function(event) {
   const modal = document.getElementById('ruStoreModal');
   if (event.target === modal) {
@@ -47,7 +48,7 @@ window.onclick = function(event) {
   }
 }
 
-// Закрытие по кнопке Escape
+// Закрытие на Escape
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeModal();
