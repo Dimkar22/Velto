@@ -35,16 +35,25 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 0;
+  padding: 12px 0;
 }
 .logo {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--text);
   text-decoration: none;
   letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .logo span { color: var(--accent-2); }
+.logo__img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 209, 178, 0.2);
+}
 .nav { display: flex; gap: 24px; }
 .nav a {
   color: var(--muted);
@@ -101,6 +110,9 @@ body {
   color: var(--text);
   border: 1px solid #2a2c38;
   padding: 14px 22px;
+}
+.btn--store:hover {
+  border-color: var(--accent-2);
 }
 
 /* Features */
