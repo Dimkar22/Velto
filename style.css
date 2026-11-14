@@ -283,11 +283,15 @@ body {
 .footer__info {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
+}
+.footer__support {
+  font-size: 15px;
 }
 .footer__link {
-  color: var(--muted);
+  color: var(--text);
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.2s;
 }
 .footer__link:hover {
@@ -300,32 +304,43 @@ body {
 .tg-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
   font-size: 15px;
-  background: rgba(0, 209, 178, 0.1);
-  padding: 10px 20px;
-  border-radius: 12px;
-  border: 1px solid rgba(0, 209, 178, 0.2);
-  transition: background 0.3s, transform 0.2s;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 18px 8px 8px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background 0.3s, border-color 0.3s, transform 0.2s;
 }
 .tg-link:hover {
-  background: rgba(0, 209, 178, 0.2);
+  background: rgba(0, 209, 178, 0.1);
+  border-color: rgba(0, 209, 178, 0.3);
   transform: translateY(-2px);
 }
+.tg-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #00d1b2; /* Красивый зеленый кружок для иконки */
+  border-radius: 50%;
+}
 .tg-icon {
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
+  margin-left: -2px; /* Центровка иконки телеграма внутри кружка */
 }
 
 /* --- Модальное окно RuStore --- */
 .modal {
-  display: none;
+  display: none; /* Скрыто по умолчанию */
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   z-index: 1000;
   align-items: center;
@@ -333,6 +348,7 @@ body {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+/* Класс для плавного появления */
 .modal.is-active {
   display: flex;
   opacity: 1;
@@ -340,16 +356,19 @@ body {
 .modal__content {
   background: var(--card);
   border: 1px solid #2a2c38;
-  border-radius: 20px;
+  border-radius: 24px;
   padding: 40px 30px 30px;
   max-width: 400px;
   width: 90%;
   text-align: center;
   position: relative;
-  transform: translateY(20px) scale(0.95);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  /* Начальное состояние: чуть ниже и меньше */
+  transform: translateY(30px) scale(0.9); 
+  /* Пружинистая анимация появления */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
+/* Конечное состояние: плавно выезжает и увеличивается */
 .modal.is-active .modal__content {
   transform: translateY(0) scale(1);
 }
@@ -392,9 +411,14 @@ body {
   .footer__inner {
     flex-direction: column;
     text-align: center;
+    align-items: center;
+  }
+  .footer__info {
+    align-items: center;
   }
   .footer__contacts {
     justify-content: center;
     width: 100%;
+    margin-top: 10px;
   }
 }
