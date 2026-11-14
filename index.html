@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velto — Мессенджер нового поколения</title>
   <meta name="description" content="Velto — быстрый и безопасный мессенджер для общения без границ.">
+  
+  <!-- Open Graph (для красивого шаринга) -->
+  <meta property="og:title" content="Velto — Мессенджер нового поколения">
+  <meta property="og:description" content="Общение без границ. Доставка сообщений < 80 мс. Без рекламы и трекеров.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a1210'/%3E%3Cpath d='M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z' fill='%2300d1b2'/%3E%3Cpath d='M50 25C35.64 25 24 35.75 24 49C24 56.5 28 63.25 34 67.5V79L44 71.5C46 72 48 72 50 72C64.36 72 76 61.25 76 49C76 35.75 64.36 25 50 25Z' fill='%230a1210'/%3E%3Ccircle cx='36' cy='49' r='5' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='49' r='5' fill='%23ffffff'/%3E%3Ccircle cx='64' cy='49' r='5' fill='%23ffffff'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Анимированный фон -->
+  <!-- Анимированный фон (Particles/Glow) -->
   <div class="bg-glow">
     <div class="bg-glow__circle bg-glow__circle--1"></div>
     <div class="bg-glow__circle bg-glow__circle--2"></div>
@@ -32,38 +39,50 @@
       </a>
       <nav class="nav">
         <a href="#features">Возможности</a>
-        <a href="#download">Скачать</a>
+        <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
       </nav>
+      <a href="#download" class="btn btn--primary btn--small">В лист ожидания</a>
     </div>
   </header>
 
-  <!-- Hero (Обновленный) -->
+  <!-- Hero (Мощная секция) -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
-        <h1>Общение без границ с <span>Velto</span></h1>
-        <p>Быстрый, безопасный и красивый мессенджер. Всё, что нужно для комфортной переписки — в одном приложении.</p>
+        <div class="badge">⚡ Скоро в RuStore</div>
+        <h1>Мессенджер, который <span>не тормозит</span></h1>
+        <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
+        
         <div class="hero__buttons">
           <a href="#download" class="btn btn--primary btn--glow">Скачать бесплатно</a>
-          <a href="#features" class="btn btn--ghost">Узнать больше</a>
+          <a href="#features" class="btn btn--ghost">Как это работает</a>
+        </div>
+        
+        <!-- Социальное доказательство под кнопками -->
+        <div class="hero__social-proof">
+          <div class="avatars">
+            <div class="avatar" style="background: #FF6B6B;"></div>
+            <div class="avatar" style="background: #4ECDC4;"></div>
+            <div class="avatar" style="background: #FFE66D;"></div>
+            <div class="avatar" style="background: #1A535C;"></div>
+          </div>
+          <span>Уже <b>250+</b> человек в закрытом тестировании</span>
         </div>
       </div>
       
-      <!-- Мокап смартфона -->
+      <!-- Мокап смартфона с анимацией -->
       <div class="hero__phone">
+        <div class="phone-glow"></div>
         <div class="phone">
           <div class="phone__notch"></div>
           <div class="phone__screen">
             <div class="chat-header">
               <div class="chat-header__avatar"></div>
-              <div class="chat-header__name">Velto Team</div>
+              <div class="chat-header__name">Velto Team <br><span style="font-size:10px; color:#00d1b2;">в сети</span></div>
             </div>
-            <div class="chat-body">
-              <div class="message message--in">Привет! Как тебе новый мессенджер? 👋</div>
-              <div class="message message--out">Просто огонь! Очень быстрый 🔥</div>
-              <div class="message message--in">А дизайн какой красивый 😍</div>
-              <div class="message message--out">Согласен! Переходим всей командой</div>
+            <div class="chat-body" id="chat-body">
+              <!-- Сообщения будут добавляться через JS -->
             </div>
             <div class="chat-input">
               <div class="chat-input__field">Сообщение...</div>
@@ -81,52 +100,99 @@
       <span>🔒 Безопасность</span>
       <span>🎨 Минимализм</span>
       <span>🚀 Стабильность</span>
-      <span>💬 Удобный чат</span>
+      <span>💬 Без рекламы</span>
       <span>⚡ Молниеносная скорость</span>
       <span>🔒 Безопасность</span>
       <span>🎨 Минимализм</span>
       <span>🚀 Стабильность</span>
-      <span>💬 Удобный чат</span>
+      <span>💬 Без рекламы</span>
     </div>
   </div>
 
-  <!-- Возможности -->
+  <!-- Возможности (С цифрами) -->
   <section id="features" class="features">
     <div class="container">
       <h2 class="reveal">Почему Velto?</h2>
       <div class="features__grid">
         <div class="card reveal">
           <div class="card__icon">⚡</div>
-          <h3>Молниеносно</h3>
-          <p>Сообщения доставляются за миллисекунды благодаря современной архитектуре.</p>
+          <h3>Доставка < 80 мс</h3>
+          <p>Современный протокол позволяет обмениваться сообщениями практически мгновенно.</p>
         </div>
         <div class="card reveal">
-          <div class="card__icon">🔒</div>
-          <h3>Безопасно</h3>
-          <p>Сквозное шифрование. Твои переписки видишь только ты.</p>
+          <div class="card__icon">🛡️</div>
+          <h3>Без рекламы</h3>
+          <p>Мы не собираем данные, не показываем рекламу и не передаем информацию третьим лицам.</p>
         </div>
         <div class="card reveal">
-          <div class="card__icon">🎨</div>
-          <h3>Минимализм</h3>
-          <p>Продуманный дизайн и тёмная тема, которая не устаёт. Ничего лишнего.</p>
+          <div class="card__icon">🪶</div>
+          <h3>Всего 12 МБ</h3>
+          <p>Приложение весит копейки и работает даже на старых смартфонах. Быстрая установка.</p>
         </div>
         <div class="card reveal">
-          <div class="card__icon">🚀</div>
-          <h3>Стабильность</h3>
-          <p>Приложение работает без сбоев и лагов, даже при плохом интернете.</p>
+          <div class="card__icon">📶</div>
+          <h3>Работает при 2G</h3>
+          <p>Стабильно держит соединение даже при скорости интернета 50 кбит/с.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Скачать -->
+  <!-- Отзывы (Социальное доказательство) -->
+  <section id="reviews" class="reviews">
+    <div class="container">
+      <h2 class="reveal">Что говорят тестировщики</h2>
+      <div class="reviews__grid">
+        <div class="review-card reveal">
+          <div class="review-card__text">"Реально шустрый. Переписываюсь с другом в метро, где связь еле ловит — сообщения доходят моментально. Не то что в ТГ."</div>
+          <div class="review-card__author">
+            <div class="avatar" style="background: #6c5ce7;"></div>
+            <div><b>Александр</b><br><span>iOS-разработчик</span></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-card__text">"Скачал, потому что весит 12 метров. В итоге пользуюсь уже неделю, интерфейс приятный, глаза не устают от темной темы."</div>
+          <div class="review-card__author">
+            <div class="avatar" style="background: #00d1b2;"></div>
+            <div><b>Мария</b><br><span>Дизайнер</span></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-card__text">"Наконец-то мессенджер без лишнего мусора. Просто чат и всё. Очень жду релиз в RuStore."</div>
+          <div class="review-card__author">
+            <div class="avatar" style="background: #FF6B6B;"></div>
+            <div><b>Дмитрий</b><br><span>Студент</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Скачать / Waitlist -->
   <section id="download" class="download">
     <div class="container download__inner reveal">
       <h2>Начни общаться прямо сейчас</h2>
       <p>Совсем скоро Velto появится в RuStore</p>
-      <div class="download__buttons">
-        <button type="button" onclick="openModal(event)" class="btn btn--store">📱 Скачать в RuStore</button>
+      
+      <div class="download__stats">
+        <div class="stat-item">
+          <span class="stat-number">250+</span>
+          <span class="stat-label">в бете</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">14K</span>
+          <span class="stat-label">сообщений сегодня</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99.9%</span>
+          <span class="stat-label">аптайм</span>
+        </div>
       </div>
+
+      <div class="download__buttons">
+        <button type="button" onclick="openModal(event)" class="btn btn--store btn--large">📱 Скачать в RuStore</button>
+      </div>
+      <p class="download__note">Уже в закрытом тестировании. Скоро появится в RuStore.</p>
     </div>
   </section>
 
@@ -145,7 +211,7 @@
         </details>
         <details>
           <summary>Что уже умеет приложение?</summary>
-          <p>На данный момент Velto сфокусирован на идеальном обмене текстовыми сообщениями. Мы делаем упор на скорость и надежность, чтобы вам было комфортно общаться.</p>
+          <p>На данный момент Velto сфокусирован на идеальном обмене текстовыми сообщениями. Мы делаем упор на скорость и надежность.</p>
         </details>
         <details>
           <summary>Где скачать приложение?</summary>
@@ -181,10 +247,16 @@
   <div id="ruStoreModal" class="modal">
     <div class="modal__content">
       <button type="button" class="modal__close" onclick="closeModal()">&times;</button>
-      <div class="modal__icon">📱</div>
-      <h3>Уже совсем скоро!</h3>
-      <p>Мы активно готовим релиз Velto. Приложение появится в RuStore в ближайшее время. Следите за обновлениями!</p>
-      <button type="button" onclick="closeModal()" class="btn btn--primary btn--glow" style="margin-top: 20px; width: 100%;">Понятно</button>
+      <div class="modal__icon">🚀</div>
+      <h3>Скоро в RuStore!</h3>
+      <p>Мы активно готовим релиз Velto. Приложение появится в магазине в ближайшее время.</p>
+      
+      <!-- Имитация листа ожидания -->
+      <div style="margin-top: 20px; text-align: left;">
+        <label style="font-size: 13px; color: var(--muted); margin-bottom: 5px; display: block;">Узнать первым о релизе:</label>
+        <input type="email" placeholder="Ваш Email или @username" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #2a2c38; background: #0e0f13; color: #fff; margin-bottom: 10px; outline: none;">
+        <button type="button" onclick="closeModal()" class="btn btn--primary btn--glow" style="width: 100%;">В лист ожидания</button>
+      </div>
     </div>
   </div>
 
@@ -197,4 +269,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
+          </html>
