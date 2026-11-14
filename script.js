@@ -28,19 +28,19 @@ document.querySelectorAll('.card').forEach(card => {
 
 // --- Логика модального окна RuStore ---
 function openModal(event) {
-  if (event) event.preventDefault(); // Останавливаем любые действия браузера по умолчанию
+  if (event) event.preventDefault(); // Блокируем стандартное поведение
   const modal = document.getElementById('ruStoreModal');
   modal.classList.add('is-active');
-  document.body.style.overflow = 'hidden'; // Блокируем скролл фона
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
   const modal = document.getElementById('ruStoreModal');
   modal.classList.remove('is-active');
-  document.body.style.overflow = ''; // Возвращаем скролл
+  document.body.style.overflow = '';
 }
 
-// Закрытие окна при клике на темный фон
+// Закрытие при клике на фон
 window.onclick = function(event) {
   const modal = document.getElementById('ruStoreModal');
   if (event.target === modal) {
@@ -48,9 +48,41 @@ window.onclick = function(event) {
   }
 }
 
-// Закрытие по кнопке Escape
+// Закрытие на Escape
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
     closeModal();
+  }
+});
+
+// --- ЗАЩИТА КОНТЕНТА ---
+
+// 1. Запрет на копирование (Ctrl+C / Cmd+C)
+document.addEventListener('copy', (e) => {
+  e.preventDefault();
+});
+
+// 2. Запрет на вырезание
+document.addEventListener('cut', (e) => {
+  e.preventDefault();
+});
+
+// 3. Запрет на правую кнопку мыши (контекстное меню)
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+});
+
+// 4. Блокировка клавиш (PrintScreen, Ctrl+S, Ctrl+U, Ctrl+P)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'PrintScreen' || e.keyCode === 44) {
+    e.preventDefault();
+    // Очищаем буфер обмена, чтобы скриншот не сохранился
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(''); 
+    }
+  }
+  
+  if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U' || e.key === 'p' || e.key === 'P')) {
+    e.preventDefault();
   }
 });
