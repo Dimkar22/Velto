@@ -40,10 +40,14 @@ function showComingSoon(platform) {
   const text = document.getElementById('modal-text');
   const icon = document.getElementById('modal-icon');
 
-  if (platform === 'iOS') {
+  if (platform === 'RuStore') {
+    title.textContent = 'Скоро в RuStore!';
+    text.textContent = 'Мы активно готовим релиз Velto для RuStore. А пока вы можете попробовать веб-версию прямо сейчас!';
+    icon.textContent = '📱';
+  } else if (platform === 'iOS') {
     title.textContent = 'iOS версия скоро будет!';
     text.textContent = 'Мы активно разрабатываем приложение для iPhone. Следите за новостями в нашем Telegram-канале!';
-    icon.textContent = '📱';
+    icon.textContent = '🍏';
   } else if (platform === 'PC (Windows / macOS)') {
     title.textContent = 'Версия для ПК скоро будет!';
     text.textContent = 'Приложение для Windows и macOS уже в разработке. Пока вы можете пользоваться веб-версией.';
@@ -78,7 +82,7 @@ const messages = [
   { text: "Просто огонь! Очень быстрый 🔥", type: "out", delay: 2500 },
   { text: "А дизайн какой красивый 😍", type: "in", delay: 4500 },
   { text: "Согласен! Переходим всей командой", type: "out", delay: 6000 },
-  { text: "Открывай скорее в браузере!", type: "in", delay: 8000 }
+  { text: "Скоро в RuStore, а пока пробуй в браузере!", type: "in", delay: 8000 }
 ];
 
 function playChatAnimation() {
