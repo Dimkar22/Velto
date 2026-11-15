@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velto — Мессенджер нового поколения</title>
-  <meta name="description" content="Velto — быстрый и безопасный мессенджер. Попробуйте прямо в браузере!">
+  <meta name="description" content="Velto — быстрый и безопасный мессенджер. Скоро в RuStore!">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Velto — Мессенджер нового поколения">
@@ -42,7 +42,8 @@
         <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--small">Открыть мессенджер</a>
+      <!-- Кнопка в шапке ведет в мессенджер (веб-версия) -->
+      <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--small">Открыть веб-версию</a>
     </div>
   </header>
 
@@ -50,12 +51,13 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
-        <div class="badge">⚡ Уже доступно в браузере</div>
+        <div class="badge">⚡ Скоро в RuStore</div>
         <h1>Мессенджер, который <span>не тормозит</span></h1>
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow">Открыть мессенджер</a>
+          <!-- Кнопка ведет в веб-версию -->
+          <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow">Открыть веб-версию</a>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
         
@@ -168,7 +170,7 @@
   <section id="download" class="download">
     <div class="container download__inner reveal">
       <h2>Начни общаться прямо сейчас</h2>
-      <p>Выбери удобную платформу или открой веб-версию</p>
+      <p>Выбери удобную платформу или попробуй веб-версию</p>
       
       <div class="download__stats">
         <div class="stat-item">
@@ -186,8 +188,8 @@
       </div>
 
       <div class="download__buttons">
-        <!-- Главная кнопка веб-версии -->
-        <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow btn--large">Открыть веб-версию</a>
+        <!-- Кнопка RuStore с вызовом модалки -->
+        <button type="button" onclick="showComingSoon('RuStore')" class="btn btn--primary btn--glow btn--large">📱 Скачать в RuStore (Скоро выйдет)</button>
       </div>
 
       <!-- Кнопки платформ -->
@@ -207,7 +209,7 @@
         </button>
       </div>
       
-      <p class="download__note">Мобильные приложения и ПК-версии уже в разработке. Скоро!</p>
+      <p class="download__note">Веб-версия уже доступна. Мобильные приложения и ПК-версии в разработке.</p>
     </div>
   </section>
 
@@ -230,13 +232,13 @@
         </details>
         <details>
           <summary>Где скачать приложение?</summary>
-          <p>Прямо сейчас вы можете открыть веб-версию Velto по кнопке выше. Версии для iOS, ПК и RuStore появятся в ближайшее время.</p>
+          <p>Веб-версия уже доступна по кнопке в шапке сайта. Версии для iOS, ПК и RuStore появятся в ближайшее время.</p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Подвал с контактами -->
+  <!-- Подвал -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__info">
@@ -276,7 +278,11 @@
       <div class="modal__icon" id="modal-icon">🚀</div>
       <h3 id="modal-title">Скоро будет!</h3>
       <p id="modal-text">Мы уже работаем над этим. Следите за обновлениями в нашем Telegram-канале.</p>
-      <button type="button" onclick="closeModal()" class="btn btn--primary btn--glow" style="margin-top: 20px; width: 100%;">Понятно</button>
+      
+      <!-- Кнопка для перехода в веб-версию (если нужно) -->
+      <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow" style="margin-top: 20px; width: 100%; text-decoration: none; display: block;">Попробовать веб-версию</a>
+      
+      <button type="button" onclick="closeModal()" class="btn btn--ghost" style="margin-top: 10px; width: 100%;">Закрыть</button>
     </div>
   </div>
 
