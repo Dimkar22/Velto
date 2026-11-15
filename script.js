@@ -23,60 +23,43 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 
-  // 3. ЛОГИКА WAITLIST (Лист ожидания)
-  const modal = document.getElementById('waitlistModal');
-  const formBlock = document.getElementById('waitlist-form');
-  const successBlock = document.getElementById('waitlist-success');
-  const waitlistForm = document.getElementById('waitlistForm');
-  const waitlistInput = document.getElementById('waitlist-input');
+  // 3. РАБОТА МОДАЛЬНОГО ОКНА
+  const modal = document.getElementById('modal-container');
+  const blocks = document.querySelectorAll('.modal-block');
 
-  // Открытие модалки (навешиваем на все кнопки с классом js-open-waitlist)
-  document.querySelectorAll('.js-open-waitlist').forEach(btn => {
+  // Функция открытия
+  document.querySelectorAll('.js-open-modal').forEach(btn => {
     btn.addEventListener('click', () => {
-      formBlock.style.display = 'block';
-      successBlock.style.display = 'none';
-      waitlistInput.value = '';
+      const target = btn.getAttribute('data-target');
       
+      // Прячем все блоки, показываем нужный
+      blocks.forEach(b => b.style.display = 'none');
+      const activeBlock = document.querySelector(`.modal-block[data-block="${target}"]`);
+      if (activeBlock) activeBlock.style.display = 'block';
+
       modal.classList.add('is-active');
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => waitlistInput.focus(), 300);
+      document.body.style.overflow = 'hidden'; // Запрет скролла
     });
   });
 
-  // Закрытие модалки
+  // Функция закрытия
   document.querySelectorAll('.js-close-modal').forEach(btn => {
     btn.addEventListener('click', closeModal);
   });
-  
+
+  // Закрытие по клику на фон
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
-  
+
+  // Закрытие по Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
 
   function closeModal() {
     modal.classList.remove('is-active');
-    document.body.style.overflow = '';
-  }
-
-  // Отправка формы
-  if (waitlistForm) {
-    waitlistForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const val = waitlistInput.value.trim();
-      if (!val) return;
-
-      const submitBtn = waitlistForm.querySelector('button');
-      submitBtn.textContent = 'Отправка...';
-      
-      setTimeout(() => {
-        formBlock.style.display = 'none';
-        successBlock.style.display = 'block';
-        submitBtn.textContent = 'В лист ожидания';
-      }, 800);
-    });
+    document.body.style.overflow = ''; // Возврат скролла
   }
 
 
@@ -111,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         chatBody.scrollTop = chatBody.scrollHeight;
 
         msgIndex++;
-        setTimeout(showNext, 1500); // Пауза между сообщениями
+        setTimeout(showNext, 1500); // Пауза
       }
 
       setTimeout(showNext, 1000);
