@@ -24,12 +24,14 @@
     img { pointer-events: none; -webkit-user-drag: none; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
+    /* --- Фон --- */
     .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
     .bg-glow__circle { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 10s infinite alternate ease-in-out; }
     .bg-glow__circle--1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
     .bg-glow__circle--2 { width: 500px; height: 500px; background: var(--accent-2); bottom: -200px; right: -150px; animation-delay: -5s; }
     @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
+    /* --- Шапка --- */
     .header { position: sticky; top: 0; background: rgba(14, 15, 19, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
     .header__inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
     .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
@@ -40,6 +42,7 @@
     .nav a:hover { color: var(--text); }
     .header__actions { display: flex; align-items: center; gap: 15px; }
 
+    /* --- Кнопки --- */
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 12px; text-decoration: none !important; font-weight: 600; font-size: 16px; font-family: inherit; border: none; cursor: pointer; transition: all 0.3s ease; text-align: center; line-height: 1.2; }
     .btn--primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff !important; }
     .btn--glow { box-shadow: 0 0 20px rgba(0, 209, 178, 0.3); }
@@ -48,6 +51,7 @@
     .btn--ghost:hover { border-color: var(--muted); background: rgba(255,255,255,0.05); }
     .btn--small { padding: 8px 16px; font-size: 14px; }
 
+    /* --- Hero --- */
     .hero { padding: 80px 0 100px; }
     .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero__content { flex: 1; max-width: 600px; }
@@ -61,6 +65,7 @@
     .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -10px; }
     .avatar:first-child { margin-left: 0; }
 
+    /* --- Мокап телефона --- */
     .hero__phone { flex: 1; display: flex; justify-content: center; perspective: 1000px; position: relative; }
     .phone-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: var(--accent-2); filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none; }
     .phone { width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #222; position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1; }
@@ -79,14 +84,17 @@
     .chat-input { padding: 15px; background: var(--card); border-top: 1px solid #222; }
     .chat-input__field { background: #0e0f13; padding: 10px 15px; border-radius: 20px; color: var(--muted); font-size: 13px; }
 
+    /* --- Бегущая строка --- */
     .marquee { width: 100%; overflow: hidden; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 0; display: flex; white-space: nowrap; }
     .marquee__content { display: flex; gap: 40px; animation: scroll 25s linear infinite; }
     .marquee__content span { font-size: 18px; font-weight: 600; color: var(--muted); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+    /* --- Общие стили секций --- */
     .features, .reviews, .faq { padding: 100px 0; }
     h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px; letter-spacing: -0.5px; }
 
+    /* --- Features --- */
     .features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
     .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; transition: all 0.3s ease; }
     .card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.05); }
@@ -94,6 +102,7 @@
     .card h3 { font-size: 20px; margin-bottom: 10px; }
     .card p { color: var(--muted); font-size: 15px; }
 
+    /* --- Roadmap --- */
     .roadmap { padding: 100px 0; background: rgba(0,0,0,0.2); }
     .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .roadmap-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
@@ -104,6 +113,7 @@
     .roadmap-card h3 { font-size: 18px; margin-bottom: 8px; }
     .roadmap-card p { color: var(--muted); font-size: 14px; }
 
+    /* --- Отзывы --- */
     .reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
     .review-card__text { font-size: 15px; margin-bottom: 20px; line-height: 1.6; color: #e0e0e0; }
@@ -111,6 +121,7 @@
     .review-card__author b { font-size: 14px; display: block; }
     .review-card__author span { font-size: 12px; color: var(--muted); }
 
+    /* --- Скачать / Платформы --- */
     .download { padding: 100px 0; text-align: center; }
     .download p { color: var(--muted); margin-bottom: 30px; }
     .download__stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
@@ -125,6 +136,7 @@
     .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
     .platform-btn:hover span { color: var(--text); }
 
+    /* --- FAQ --- */
     .faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s; }
     .faq details:hover { background: #202432; }
     .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -134,6 +146,7 @@
     .faq details[open] summary { color: var(--accent-2); margin-bottom: 12px; }
     .faq p { color: var(--muted); line-height: 1.6; }
 
+    /* --- Подвал --- */
     .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; background: rgba(0,0,0,0.2); }
     .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: 14px; }
     .footer__info { display: flex; flex-direction: column; gap: 8px; }
@@ -145,7 +158,7 @@
     .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
     .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-    /* МОДАЛЬНОЕ ОКНО */
+    /* --- Модальное окно --- */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
     .modal.is-active { display: flex; opacity: 1; }
     .modal__content { background: var(--card); border: 1px solid var(--card-border); border-radius: 24px; padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center; position: relative; transform: translateY(30px) scale(0.9); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
@@ -156,7 +169,6 @@
     .modal h3 { font-size: 24px; margin-bottom: 10px; }
     .modal p { color: var(--muted); font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
 
-    /* Поля формы */
     .form-group { margin-bottom: 15px; text-align: left; }
     .form-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
     .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; transition: border-color 0.2s; font-family: inherit; }
@@ -374,6 +386,7 @@
       </div>
 
       <div class="platforms">
+        <!-- RuStore (открывает форму) -->
         <button type="button" class="platform-btn js-open-modal" data-target="rustore" aria-label="RuStore">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="6" fill="#0077FF"/>
@@ -382,11 +395,13 @@
           <span>RuStore</span>
         </button>
         
+        <!-- iOS (открывает инфо-окно) -->
         <button type="button" class="platform-btn js-open-modal" data-target="ios" aria-label="iOS">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           <span>iOS</span>
         </button>
         
+        <!-- ПК (открывает инфо-окно) -->
         <button type="button" class="platform-btn js-open-modal" data-target="pc" aria-label="ПК">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
           <span>Компьютер</span>
@@ -436,19 +451,18 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО С ФОРМОЙ -->
+  <!-- МОДАЛЬНОЕ ОКНО (Управляется скриптом внизу) -->
   <div class="modal" id="modal-container">
     <div class="modal__content">
       <button type="button" class="modal__close js-close-modal">&times;</button>
       
+      <!-- 1. Блок с формой -->
       <div class="modal-block" data-block="general">
         <div class="modal__icon">📩</div>
         <h3>Займи место в очереди</h3>
         <p>Оставь свои данные, и мы сообщим первым, как только Velto выйдет!</p>
         
-        <!-- ФОРМА ОТПРАВКИ В WEB3FORMS -->
         <form id="waitlist-form">
-          <!-- СКРЫТЫЕ ПОЛЯ ДЛЯ WEB3FORMS -->
           <input type="hidden" name="access_key" value="3a0a3444-c846-44f1-ba06-e6776093991d">
           <input type="hidden" name="subject" value="Новая заявка в Velto">
           <input type="hidden" name="from_name" value="Velto Landing">
@@ -467,7 +481,7 @@
         </form>
       </div>
 
-      <!-- ЭКРАН УСПЕХА (Показывается после отправки) -->
+      <!-- 2. Экран успеха -->
       <div class="modal-block" data-block="success">
         <div class="modal__icon" style="color: #00d1b2;">✅</div>
         <h3>Заявка отправлена!</h3>
@@ -476,45 +490,75 @@
         <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
       </div>
 
+      <!-- 3. Блок для iOS -->
+      <div class="modal-block" data-block="ios">
+        <div class="modal__icon">🍏</div>
+        <h3>Скоро в App Store!</h3>
+        <p>Мы активно разрабатываем версию для iPhone. Следите за обновлениями в нашем Telegram-канале, чтобы не пропустить релиз!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
+      </div>
+
+      <!-- 4. Блок для ПК -->
+      <div class="modal-block" data-block="pc">
+        <div class="modal__icon">💻</div>
+        <h3>Скоро на компьютере!</h3>
+        <p>Приложение для Windows и macOS уже в разработке. Мы сообщим, как только оно будет готово!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
+      </div>
+
     </div>
   </div>
 
+  <!-- ВСТРОЕННЫЙ СКРИПТ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Модальное окно
+      
+      // 1. Модальное окно и переключение блоков
       const modal = document.getElementById('modal-container');
+      const allBlocks = document.querySelectorAll('.modal-block');
       const formBlock = document.querySelector('.modal-block[data-block="general"]');
       const successBlock = document.querySelector('.modal-block[data-block="success"]');
 
       document.querySelectorAll('.js-open-modal').forEach(btn => {
         btn.addEventListener('click', () => {
-          // Показываем форму, прячем успех
-          formBlock.style.display = 'block';
-          successBlock.style.display = 'none';
+          const target = btn.getAttribute('data-target');
+          
+          // Скрываем все
+          allBlocks.forEach(b => b.style.display = 'none');
+          
+          // Показываем нужный
+          if (target === 'ios') {
+            document.querySelector('.modal-block[data-block="ios"]').style.display = 'block';
+          } else if (target === 'pc') {
+            document.querySelector('.modal-block[data-block="pc"]').style.display = 'block';
+          } else {
+            // Для RuStore и общей кнопки показываем форму
+            formBlock.style.display = 'block';
+            formBlock.querySelector('form').reset(); 
+          }
           
           modal.classList.add('is-active');
           document.body.style.overflow = 'hidden';
         });
       });
 
+      // Закрытие
       document.querySelectorAll('.js-close-modal').forEach(btn => {
         btn.addEventListener('click', closeModal);
       });
-
       modal.addEventListener('click', (e) => {
         if (e.target === modal) closeModal();
       });
-
       function closeModal() {
         modal.classList.remove('is-active');
         document.body.style.overflow = '';
       }
 
-      // 2. Отправка формы в Web3Forms
+      // 2. Отправка формы Web3Forms
       const form = document.getElementById('waitlist-form');
       if (form) {
         form.addEventListener('submit', function(e) {
-          e.preventDefault(); // Останавливаем стандартную отправку
+          e.preventDefault();
           
           const formData = new FormData(form);
           const object = Object.fromEntries(formData);
@@ -526,26 +570,19 @@
 
           fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: json
           })
           .then(async (response) => {
-            let json = await response.json();
             if (response.status == 200) {
-              // УСПЕХ! Показываем экран благодарности
               formBlock.style.display = 'none';
               successBlock.style.display = 'block';
-              form.reset(); // Очищаем форму
+              form.reset();
             } else {
-              console.log(response);
               alert("Ошибка при отправке. Попробуйте позже.");
             }
           })
-          .catch(error => {
-            console.log(error);
+          .catch(() => {
             alert("Ошибка сети. Проверьте интернет.");
           })
           .finally(() => {
@@ -555,7 +592,7 @@
         });
       }
 
-      // 3. Анимации и чат (оставил как было)
+      // 3. Анимации и чат
       const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
