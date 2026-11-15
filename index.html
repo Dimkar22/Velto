@@ -7,7 +7,6 @@
   <meta name="description" content="Velto — быстрый и безопасный мессенджер. Скоро в RuStore!">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a1210'/%3E%3Cpath d='M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z' fill='%2300d1b2'/%3E%3C/svg%3E">
 
-  <!-- ВСТРОЕННЫЕ СТИЛИ -->
   <style>
     :root {
       --bg: #0e0f13;
@@ -20,30 +19,17 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-user-select: none; user-select: none; }
     input, textarea { -webkit-user-select: text; user-select: text; }
     img { pointer-events: none; -webkit-user-drag: none; }
-
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
-    /* --- Анимированный фон --- */
     .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
     .bg-glow__circle { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 10s infinite alternate ease-in-out; }
     .bg-glow__circle--1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
     .bg-glow__circle--2 { width: 500px; height: 500px; background: var(--accent-2); bottom: -200px; right: -150px; animation-delay: -5s; }
     @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
-    /* --- Header --- */
     .header { position: sticky; top: 0; background: rgba(14, 15, 19, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
     .header__inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
     .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
@@ -54,7 +40,6 @@
     .nav a:hover { color: var(--text); }
     .header__actions { display: flex; align-items: center; gap: 15px; }
 
-    /* --- Кнопки --- */
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 12px; text-decoration: none !important; font-weight: 600; font-size: 16px; font-family: inherit; border: none; cursor: pointer; transition: all 0.3s ease; text-align: center; line-height: 1.2; }
     .btn--primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff !important; }
     .btn--glow { box-shadow: 0 0 20px rgba(0, 209, 178, 0.3); }
@@ -63,7 +48,6 @@
     .btn--ghost:hover { border-color: var(--muted); background: rgba(255,255,255,0.05); }
     .btn--small { padding: 8px 16px; font-size: 14px; }
 
-    /* --- Hero --- */
     .hero { padding: 80px 0 100px; }
     .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero__content { flex: 1; max-width: 600px; }
@@ -77,7 +61,6 @@
     .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -10px; }
     .avatar:first-child { margin-left: 0; }
 
-    /* --- Мокап смартфона --- */
     .hero__phone { flex: 1; display: flex; justify-content: center; perspective: 1000px; position: relative; }
     .phone-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: var(--accent-2); filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none; }
     .phone { width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #222; position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1; }
@@ -96,17 +79,14 @@
     .chat-input { padding: 15px; background: var(--card); border-top: 1px solid #222; }
     .chat-input__field { background: #0e0f13; padding: 10px 15px; border-radius: 20px; color: var(--muted); font-size: 13px; }
 
-    /* --- Marquee --- */
     .marquee { width: 100%; overflow: hidden; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 0; display: flex; white-space: nowrap; }
     .marquee__content { display: flex; gap: 40px; animation: scroll 25s linear infinite; }
     .marquee__content span { font-size: 18px; font-weight: 600; color: var(--muted); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* --- Общие стили --- */
     .features, .reviews, .faq { padding: 100px 0; }
     h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px; letter-spacing: -0.5px; }
 
-    /* --- Features --- */
     .features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
     .card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; transition: all 0.3s ease; }
     .card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.05); }
@@ -114,7 +94,6 @@
     .card h3 { font-size: 20px; margin-bottom: 10px; }
     .card p { color: var(--muted); font-size: 15px; }
 
-    /* --- Roadmap --- */
     .roadmap { padding: 100px 0; background: rgba(0,0,0,0.2); }
     .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .roadmap-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
@@ -125,7 +104,6 @@
     .roadmap-card h3 { font-size: 18px; margin-bottom: 8px; }
     .roadmap-card p { color: var(--muted); font-size: 14px; }
 
-    /* --- Отзывы --- */
     .reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
     .review-card__text { font-size: 15px; margin-bottom: 20px; line-height: 1.6; color: #e0e0e0; }
@@ -133,7 +111,6 @@
     .review-card__author b { font-size: 14px; display: block; }
     .review-card__author span { font-size: 12px; color: var(--muted); }
 
-    /* --- Download / Платформы --- */
     .download { padding: 100px 0; text-align: center; }
     .download p { color: var(--muted); margin-bottom: 30px; }
     .download__stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
@@ -148,7 +125,6 @@
     .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
     .platform-btn:hover span { color: var(--text); }
 
-    /* --- FAQ --- */
     .faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s; }
     .faq details:hover { background: #202432; }
     .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
@@ -158,57 +134,38 @@
     .faq details[open] summary { color: var(--accent-2); margin-bottom: 12px; }
     .faq p { color: var(--muted); line-height: 1.6; }
 
-    /* --- Footer --- */
     .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; background: rgba(0,0,0,0.2); }
     .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: 14px; }
     .footer__info { display: flex; flex-direction: column; gap: 8px; }
     .footer__link { color: #ffffff !important; text-decoration: none !important; font-weight: 500; transition: color 0.2s; }
     .footer__link:hover { color: var(--accent-2) !important; }
     .footer__contacts { display: flex; gap: 15px; flex-wrap: wrap; }
-
     .tg-link { display: inline-flex !important; align-items: center !important; gap: 12px !important; color: #ffffff !important; text-decoration: none !important; font-weight: 600; font-size: 15px; background: rgba(255, 255, 255, 0.03); padding: 8px 18px 8px 8px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.3s, border-color 0.3s, transform 0.2s; }
     .tg-link:hover { background: rgba(0, 209, 178, 0.1); border-color: rgba(0, 209, 178, 0.3); transform: translateY(-2px); }
     .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
     .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-    /* --- МОДАЛЬНОЕ ОКНО --- */
-    .modal {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
-      align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
-    }
+    /* МОДАЛЬНОЕ ОКНО */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
     .modal.is-active { display: flex; opacity: 1; }
-    
-    .modal__content {
-      background: var(--card); border: 1px solid var(--card-border); border-radius: 24px;
-      padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center;
-      position: relative; transform: translateY(30px) scale(0.9); 
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
+    .modal__content { background: var(--card); border: 1px solid var(--card-border); border-radius: 24px; padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center; position: relative; transform: translateY(30px) scale(0.9); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
     .modal.is-active .modal__content { transform: translateY(0) scale(1); }
-
-    .modal__close {
-      position: absolute; top: 15px; right: 15px; background: transparent; border: none;
-      color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s;
-      line-height: 1;
-    }
+    .modal__close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s; line-height: 1; }
     .modal__close:hover { color: var(--text); transform: rotate(90deg); }
     .modal__icon { font-size: 48px; margin-bottom: 15px; }
     .modal h3 { font-size: 24px; margin-bottom: 10px; }
     .modal p { color: var(--muted); font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
 
-    .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
+    /* Поля формы */
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 5px; }
+    .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; transition: border-color 0.2s; font-family: inherit; }
     .waitlist-input:focus { border-color: var(--accent-2); }
 
-    /* Скрываем все модальные блоки по умолчанию */
     .modal-block { display: none; }
-
-    /* --- Анимация --- */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* --- Mobile --- */
     @media (max-width: 900px) {
       .hero__inner { flex-direction: column; text-align: center; }
       .hero__content { margin-bottom: 40px; }
@@ -417,7 +374,6 @@
       </div>
 
       <div class="platforms">
-        <!-- Кнопки с data-target -->
         <button type="button" class="platform-btn js-open-modal" data-target="rustore" aria-label="RuStore">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="6" fill="#0077FF"/>
@@ -480,48 +436,168 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО (Управляется JS) -->
+  <!-- МОДАЛЬНОЕ ОКНО С ФОРМОЙ -->
   <div class="modal" id="modal-container">
     <div class="modal__content">
       <button type="button" class="modal__close js-close-modal">&times;</button>
       
-      <!-- Блок для "Общей" кнопки (Лист ожидания) -->
       <div class="modal-block" data-block="general">
         <div class="modal__icon">📩</div>
         <h3>Займи место в очереди</h3>
-        <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
-        <input type="text" placeholder="Email или @username" class="waitlist-input">
-        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 10px;">В лист ожидания</button>
+        <p>Оставь свои данные, и мы сообщим первым, как только Velto выйдет!</p>
+        
+        <!-- ФОРМА ОТПРАВКИ В WEB3FORMS -->
+        <form id="waitlist-form">
+          <!-- СКРЫТЫЕ ПОЛЯ ДЛЯ WEB3FORMS -->
+          <input type="hidden" name="access_key" value="99b66dd6-768f-4785-bf3a-5058423a03eb">
+          <input type="hidden" name="subject" value="Новая заявка в Velto">
+          <input type="hidden" name="from_name" value="Velto Landing">
+          
+          <div class="form-group">
+            <label for="user-name">Ваше имя</label>
+            <input type="text" id="user-name" name="name" placeholder="Например, Дмитрий" class="waitlist-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="user-email">Ваш Email</label>
+            <input type="email" id="user-email" name="email" placeholder="you@example.com" class="waitlist-input" required>
+          </div>
+          
+          <button type="submit" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Отправить заявку</button>
+        </form>
       </div>
 
-      <!-- Блок для кнопки RuStore -->
-      <div class="modal-block" data-block="rustore">
-        <div class="modal__icon">📱</div>
-        <h3>Скоро в RuStore!</h3>
-        <p>Мы готовим официальный релиз для RuStore. Оставь свой Email, чтобы узнать о выходе первым!</p>
-        <input type="text" placeholder="Email или @username" class="waitlist-input">
-        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 10px;">Узнать о релизе</button>
-      </div>
-
-      <!-- Блок для кнопки iOS -->
-      <div class="modal-block" data-block="ios">
-        <div class="modal__icon">🍏</div>
-        <h3>Скоро в App Store!</h3>
-        <p>Мы активно разрабатываем версию для iPhone. Следите за обновлениями в нашем Telegram-канале!</p>
-        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
-      </div>
-
-      <!-- Блок для кнопки ПК -->
-      <div class="modal-block" data-block="pc">
-        <div class="modal__icon">💻</div>
-        <h3>Скоро на компьютере!</h3>
-        <p>Приложение для Windows и macOS уже в разработке. Мы сообщим, как только оно будет готово!</p>
-        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
+      <!-- ЭКРАН УСПЕХА (Показывается после отправки) -->
+      <div class="modal-block" data-block="success">
+        <div class="modal__icon" style="color: #00d1b2;">✅</div>
+        <h3>Заявка отправлена!</h3>
+        <p>Мы получили твою заявку на доступ к Velto. Сейчас она находится на проверке. Мы напишем тебе, как только все будет готово.</p>
+        <p style="font-size: 14px; margin-top: 10px;">С уважением,<br>Команда Velto</p>
+        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
       </div>
 
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Модальное окно
+      const modal = document.getElementById('modal-container');
+      const formBlock = document.querySelector('.modal-block[data-block="general"]');
+      const successBlock = document.querySelector('.modal-block[data-block="success"]');
+
+      document.querySelectorAll('.js-open-modal').forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Показываем форму, прячем успех
+          formBlock.style.display = 'block';
+          successBlock.style.display = 'none';
+          
+          modal.classList.add('is-active');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      document.querySelectorAll('.js-close-modal').forEach(btn => {
+        btn.addEventListener('click', closeModal);
+      });
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      function closeModal() {
+        modal.classList.remove('is-active');
+        document.body.style.overflow = '';
+      }
+
+      // 2. Отправка формы в Web3Forms
+      const form = document.getElementById('waitlist-form');
+      if (form) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault(); // Останавливаем стандартную отправку
+          
+          const formData = new FormData(form);
+          const object = Object.fromEntries(formData);
+          const json = JSON.stringify(object);
+          const submitBtn = form.querySelector('button[type="submit"]');
+          
+          submitBtn.textContent = 'Отправка...';
+          submitBtn.disabled = true;
+
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: json
+          })
+          .then(async (response) => {
+            let json = await response.json();
+            if (response.status == 200) {
+              // УСПЕХ! Показываем экран благодарности
+              formBlock.style.display = 'none';
+              successBlock.style.display = 'block';
+              form.reset(); // Очищаем форму
+            } else {
+              console.log(response);
+              alert("Ошибка при отправке. Попробуйте позже.");
+            }
+          })
+          .catch(error => {
+            console.log(error);
+            alert("Ошибка сети. Проверьте интернет.");
+          })
+          .finally(() => {
+            submitBtn.textContent = 'Отправить заявку';
+            submitBtn.disabled = false;
+          });
+        });
+      }
+
+      // 3. Анимации и чат (оставил как было)
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      const chatBody = document.getElementById('chat-body');
+      if (chatBody) {
+        const messages = [
+          { text: "Привет! Как тебе новый мессенджер? 👋", type: "in" },
+          { text: "Просто огонь! Очень быстрый 🔥", type: "out" },
+          { text: "А дизайн какой красивый 😍", type: "in" },
+          { text: "Согласен! Переходим всей командой", type: "out" },
+          { text: "Скоро в RuStore, ждем всех!", type: "in" }
+        ];
+        let msgIndex = 0;
+        function playChat() {
+          chatBody.innerHTML = '';
+          msgIndex = 0;
+          function showNext() {
+            if (msgIndex >= messages.length) {
+              setTimeout(playChat, 4000);
+              return;
+            }
+            const msg = messages[msgIndex];
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message message--${msg.type}`;
+            msgDiv.textContent = msg.text;
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+            msgIndex++;
+            setTimeout(showNext, 1500);
+          }
+          setTimeout(showNext, 1000);
+        }
+        playChat();
+      }
+    });
+  </script>
 </body>
 </html>
