@@ -5,25 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velto — Мессенджер нового поколения</title>
   <meta name="description" content="Velto — быстрый и безопасный мессенджер. Скоро в RuStore!">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="Velto — Мессенджер нового поколения">
-  <meta property="og:description" content="Общение без границ. Доставка сообщений < 80 мс. Без рекламы и трекеров.">
-  <meta property="og:type" content="website">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a1210'/%3E%3Cpath d='M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z' fill='%2300d1b2'/%3E%3Cpath d='M50 25C35.64 25 24 35.75 24 49C24 56.5 28 63.25 34 67.5V79L44 71.5C46 72 48 72 50 72C64.36 72 76 61.25 76 49C76 35.75 64.36 25 50 25Z' fill='%230a1210'/%3E%3Ccircle cx='36' cy='49' r='5' fill='%23ffffff'/%3E%3Ccircle cx='50' cy='49' r='5' fill='%23ffffff'/%3E%3Ccircle cx='64' cy='49' r='5' fill='%23ffffff'/%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a1210'/%3E%3Cpath d='M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z' fill='%2300d1b2'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Анимированный фон -->
   <div class="bg-glow">
     <div class="bg-glow__circle bg-glow__circle--1"></div>
     <div class="bg-glow__circle bg-glow__circle--2"></div>
   </div>
 
-  <!-- Шапка -->
   <header class="header">
     <div class="container header__inner">
       <a href="#" class="logo">
@@ -46,16 +37,14 @@
       </nav>
 
       <div class="header__actions">
-        <!-- Вынесли Telegram в шапку -->
         <a href="https://t.me/VeltoOFF" target="_blank" class="header__tg" aria-label="Telegram канал">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
         </a>
-        <button type="button" onclick="openWaitlist()" class="btn btn--primary btn--small">В лист ожидания</button>
+        <button type="button" class="btn btn--primary btn--small js-open-waitlist">В лист ожидания</button>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
@@ -64,7 +53,7 @@
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <button type="button" onclick="openWaitlist()" class="btn btn--primary btn--glow">Занять место в очереди</button>
+          <button type="button" class="btn btn--primary btn--glow js-open-waitlist">Занять место в очереди</button>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
         
@@ -79,7 +68,6 @@
         </div>
       </div>
       
-      <!-- Живой моккап телефона -->
       <div class="hero__phone">
         <div class="phone-glow"></div>
         <div class="phone">
@@ -89,9 +77,7 @@
               <div class="chat-header__avatar"></div>
               <div class="chat-header__name">Velto Team <br><span style="font-size:10px; color:#00d1b2;">в сети</span></div>
             </div>
-            <div class="chat-body" id="chat-body">
-              <!-- Сюда JS будет добавлять сообщения -->
-            </div>
+            <div class="chat-body" id="chat-body"></div>
             <div class="chat-input">
               <div class="chat-input__field">Сообщение...</div>
             </div>
@@ -101,7 +87,6 @@
     </div>
   </section>
 
-  <!-- Бегущая строка -->
   <div class="marquee">
     <div class="marquee__content">
       <span>⚡ Молниеносная скорость</span>
@@ -117,7 +102,6 @@
     </div>
   </div>
 
-  <!-- Возможности -->
   <section id="features" class="features">
     <div class="container">
       <h2 class="reveal">Почему Velto?</h2>
@@ -146,7 +130,6 @@
     </div>
   </section>
 
-  <!-- Roadmap (Что нового / Планы) -->
   <section id="roadmap" class="roadmap">
     <div class="container">
       <h2 class="reveal">Что уже готово и что дальше</h2>
@@ -170,7 +153,6 @@
     </div>
   </section>
 
-  <!-- Отзывы -->
   <section id="reviews" class="reviews">
     <div class="container">
       <h2 class="reveal">Что говорят тестировщики</h2>
@@ -200,7 +182,6 @@
     </div>
   </section>
 
-  <!-- Скачать / Платформы -->
   <section id="download" class="download">
     <div class="container download__inner reveal">
       <h2>Начни общаться прямо сейчас</h2>
@@ -221,16 +202,17 @@
         </div>
       </div>
 
+      <!-- Добавил класс js-open-waitlist для всех кнопок -->
       <div class="platforms">
-        <button type="button" onclick="openWaitlist()" class="platform-btn platform-btn--ru" aria-label="RuStore">
+        <button type="button" class="platform-btn js-open-waitlist" aria-label="RuStore">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm-1.5 18.5v-6h3v6h-3zm0-7.5V6h3v5h-3z"/></svg>
           <span>RuStore</span>
         </button>
-        <button type="button" onclick="openWaitlist()" class="platform-btn" aria-label="iOS">
+        <button type="button" class="platform-btn js-open-waitlist" aria-label="iOS">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           <span>iOS</span>
         </button>
-        <button type="button" onclick="openWaitlist()" class="platform-btn" aria-label="ПК">
+        <button type="button" class="platform-btn js-open-waitlist" aria-label="ПК">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
           <span>Компьютер</span>
         </button>
@@ -238,7 +220,6 @@
     </div>
   </section>
 
-  <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="container">
       <h2 class="reveal">Частые вопросы</h2>
@@ -259,7 +240,6 @@
     </div>
   </section>
 
-  <!-- Подвал -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__info">
@@ -281,30 +261,27 @@
     </div>
   </footer>
 
-  <!-- Модальное окно листа ожидания -->
   <div id="waitlistModal" class="modal">
     <div class="modal__content">
-      <button type="button" class="modal__close" onclick="closeModal()">&times;</button>
+      <button type="button" class="modal__close js-close-modal">&times;</button>
       
-      <!-- Форма -->
       <div id="waitlist-form">
         <div class="modal__icon">📩</div>
         <h3>Займи место в очереди</h3>
         <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
         
-        <form onsubmit="submitWaitlist(event)">
+        <form id="waitlistForm">
           <input type="text" id="waitlist-input" placeholder="Email или @username" required>
           <button type="submit" class="btn btn--primary btn--glow" style="width: 100%;">В лист ожидания</button>
         </form>
       </div>
 
-      <!-- Экран успеха -->
       <div id="waitlist-success" style="display: none;">
         <div class="modal__icon" style="color: #00d1b2;">✅</div>
         <h3>Вы в списке!</h3>
         <p>Ваше место в очереди — <b>#251</b>. Мы напишем вам, как только приложение будет готово.</p>
-        <p style="font-size: 13px; margin-top: 10px; color: #a0a4b8;">А пока можете подписаться на наш <a href="https://t.me/VeltoOFF" target="_blank" style="color: #00d1b2; text-decoration: none;">Telegram-канал</a>, чтобы следить за разработкой.</p>
-        <button type="button" onclick="closeModal()" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 20px;">Отлично</button>
+        <p style="font-size: 13px; margin-top: 10px; color: #a0a4b8;">А пока можете подписаться на наш <a href="https://t.me/VeltoOFF" target="_blank" style="color: #00d1b2; text-decoration: none;">Telegram-канал</a>.</p>
+        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
       </div>
     </div>
   </div>
