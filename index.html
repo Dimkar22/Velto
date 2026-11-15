@@ -171,26 +171,28 @@
     .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
     .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-    /* --- МОДАЛЬНОЕ ОКНО НА CSS --- */
-    .modal-toggle { display: none; }
-
+    /* --- МОДАЛЬНОЕ ОКНО --- */
     .modal {
       display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
-      align-items: center; justify-content: center;
+      align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease;
     }
-
-    .modal-toggle:checked ~ .modal { display: flex; }
-
+    .modal.is-active { display: flex; opacity: 1; }
+    
     .modal__content {
       background: var(--card); border: 1px solid var(--card-border); border-radius: 24px;
       padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center;
-      position: relative; animation: modalSlide 0.3s forwards; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative; transform: translateY(30px) scale(0.9); 
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
+    .modal.is-active .modal__content { transform: translateY(0) scale(1); }
 
-    @keyframes modalSlide { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-    .modal__close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s; text-decoration: none; line-height: 1; }
+    .modal__close {
+      position: absolute; top: 15px; right: 15px; background: transparent; border: none;
+      color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s;
+      line-height: 1;
+    }
     .modal__close:hover { color: var(--text); transform: rotate(90deg); }
     .modal__icon { font-size: 48px; margin-bottom: 15px; }
     .modal h3 { font-size: 24px; margin-bottom: 10px; }
@@ -199,16 +201,8 @@
     .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
     .waitlist-input:focus { border-color: var(--accent-2); }
 
-    /* СКРЫВАЕМ ВСЕ МОДАЛЬНЫЕ БЛОКИ ПО УМОЛЧАНИЮ */
+    /* Скрываем все модальные блоки по умолчанию */
     .modal-block { display: none; }
-
-    /* ПОКАЗЫВАЕМ НУЖНЫЙ БЛОК В ЗАВИСИМОСТИ ОТ ВЫБРАННОЙ КНОПКИ */
-    #toggle-rustore:checked ~ .modal .modal-block--rustore,
-    #toggle-ios:checked ~ .modal .modal-block--ios,
-    #toggle-pc:checked ~ .modal .modal-block--pc,
-    #toggle-general:checked ~ .modal .modal-block--general {
-      display: block;
-    }
 
     /* --- Анимация --- */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -260,8 +254,7 @@
       </nav>
 
       <div class="header__actions">
-        <!-- Кнопка "В лист ожидания" в шапке -->
-        <label for="toggle-general" class="btn btn--primary btn--small">В лист ожидания</label>
+        <button type="button" class="btn btn--primary btn--small js-open-modal" data-target="general">В лист ожидания</button>
       </div>
     </div>
   </header>
@@ -274,8 +267,7 @@
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <!-- Кнопка "Занять место" -->
-          <label for="toggle-general" class="btn btn--primary btn--glow">Занять место в очереди</label>
+          <button type="button" class="btn btn--primary btn--glow js-open-modal" data-target="general">Занять место в очереди</button>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
         
@@ -425,26 +417,24 @@
       </div>
 
       <div class="platforms">
-        <!-- 1. Кнопка RuStore (открывает модалку с формой) -->
-        <label for="toggle-rustore" class="platform-btn" aria-label="RuStore">
+        <!-- Кнопки с data-target -->
+        <button type="button" class="platform-btn js-open-modal" data-target="rustore" aria-label="RuStore">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="2" width="20" height="20" rx="6" fill="#0077FF"/>
             <rect x="8" y="8" width="8" height="8" fill="#ffffff"/>
           </svg>
           <span>RuStore</span>
-        </label>
+        </button>
         
-        <!-- 2. Кнопка iOS (открывает модалку "Скоро в App Store") -->
-        <label for="toggle-ios" class="platform-btn" aria-label="iOS">
+        <button type="button" class="platform-btn js-open-modal" data-target="ios" aria-label="iOS">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           <span>iOS</span>
-        </label>
+        </button>
         
-        <!-- 3. Кнопка ПК (открывает модалку "Скоро на Windows/macOS") -->
-        <label for="toggle-pc" class="platform-btn" aria-label="ПК">
+        <button type="button" class="platform-btn js-open-modal" data-target="pc" aria-label="ПК">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
           <span>Компьютер</span>
-        </label>
+        </button>
       </div>
     </div>
   </section>
@@ -490,51 +480,43 @@
     </div>
   </footer>
 
-  <!-- СКРЫТЫЕ РАДИОКНОПКИ ДЛЯ УПРАВЛЕНИЯ МОДАЛКОЙ -->
-  <input type="radio" name="modal-state" id="toggle-general" class="modal-toggle" checked>
-  <input type="radio" name="modal-state" id="toggle-rustore" class="modal-toggle">
-  <input type="radio" name="modal-state" id="toggle-ios" class="modal-toggle">
-  <input type="radio" name="modal-state" id="toggle-pc" class="modal-toggle">
-  
-  <!-- Если нажать на крестик, мы возвращаем общий чекбокс в исходное состояние -->
-  <input type="checkbox" id="modal-close" class="modal-toggle" style="display:none;">
-
-  <div class="modal">
+  <!-- МОДАЛЬНОЕ ОКНО (Управляется JS) -->
+  <div class="modal" id="modal-container">
     <div class="modal__content">
-      <label for="toggle-general" class="modal__close" style="cursor:pointer;">&times;</label>
+      <button type="button" class="modal__close js-close-modal">&times;</button>
       
       <!-- Блок для "Общей" кнопки (Лист ожидания) -->
-      <div class="modal-block modal-block--general">
+      <div class="modal-block" data-block="general">
         <div class="modal__icon">📩</div>
         <h3>Займи место в очереди</h3>
         <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
         <input type="text" placeholder="Email или @username" class="waitlist-input">
-        <label for="toggle-general" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">В лист ожидания</label>
+        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 10px;">В лист ожидания</button>
       </div>
 
       <!-- Блок для кнопки RuStore -->
-      <div class="modal-block modal-block--rustore">
+      <div class="modal-block" data-block="rustore">
         <div class="modal__icon">📱</div>
         <h3>Скоро в RuStore!</h3>
         <p>Мы готовим официальный релиз для RuStore. Оставь свой Email, чтобы узнать о выходе первым!</p>
         <input type="text" placeholder="Email или @username" class="waitlist-input">
-        <label for="toggle-general" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Узнать о релизе</label>
+        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 10px;">Узнать о релизе</button>
       </div>
 
       <!-- Блок для кнопки iOS -->
-      <div class="modal-block modal-block--ios">
+      <div class="modal-block" data-block="ios">
         <div class="modal__icon">🍏</div>
         <h3>Скоро в App Store!</h3>
         <p>Мы активно разрабатываем версию для iPhone. Следите за обновлениями в нашем Telegram-канале!</p>
-        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Перейти в Telegram</a>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
       </div>
 
       <!-- Блок для кнопки ПК -->
-      <div class="modal-block modal-block--pc">
+      <div class="modal-block" data-block="pc">
         <div class="modal__icon">💻</div>
         <h3>Скоро на компьютере!</h3>
         <p>Приложение для Windows и macOS уже в разработке. Мы сообщим, как только оно будет готово!</p>
-        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Перейти в Telegram</a>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
       </div>
 
     </div>
