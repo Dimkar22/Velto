@@ -33,22 +33,40 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// --- Логика модального окна RuStore ---
-function openModal(event) {
-  if (event) event.preventDefault();
-  const modal = document.getElementById('ruStoreModal');
+// --- Модальное окно (Универсальное) ---
+function showComingSoon(platform) {
+  const modal = document.getElementById('infoModal');
+  const title = document.getElementById('modal-title');
+  const text = document.getElementById('modal-text');
+  const icon = document.getElementById('modal-icon');
+
+  if (platform === 'iOS') {
+    title.textContent = 'iOS версия скоро будет!';
+    text.textContent = 'Мы активно разрабатываем приложение для iPhone. Следите за новостями в нашем Telegram-канале!';
+    icon.textContent = '📱';
+  } else if (platform === 'PC (Windows / macOS)') {
+    title.textContent = 'Версия для ПК скоро будет!';
+    text.textContent = 'Приложение для Windows и macOS уже в разработке. Пока вы можете пользоваться веб-версией.';
+    icon.textContent = '💻';
+  }
+
   modal.classList.add('is-active');
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
-  const modal = document.getElementById('ruStoreModal');
+  const modal = document.getElementById('infoModal');
   modal.classList.remove('is-active');
   document.body.style.overflow = '';
 }
+
+// Закрытие при клике на фон
 window.onclick = function(event) {
-  const modal = document.getElementById('ruStoreModal');
+  const modal = document.getElementById('infoModal');
   if (event.target === modal) closeModal();
 }
+
+// Закрытие на Escape
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') closeModal();
 });
@@ -60,24 +78,21 @@ const messages = [
   { text: "Просто огонь! Очень быстрый 🔥", type: "out", delay: 2500 },
   { text: "А дизайн какой красивый 😍", type: "in", delay: 4500 },
   { text: "Согласен! Переходим всей командой", type: "out", delay: 6000 },
-  { text: "Скоро в RuStore, ждем всех!", type: "in", delay: 8000 }
+  { text: "Открывай скорее в браузере!", type: "in", delay: 8000 }
 ];
 
 function playChatAnimation() {
-  chatBody.innerHTML = ''; // Очищаем чат
+  chatBody.innerHTML = '';
   messages.forEach((msg, index) => {
     setTimeout(() => {
       const msgDiv = document.createElement('div');
       msgDiv.className = `message message--${msg.type}`;
       msgDiv.textContent = msg.text;
-      // Добавляем анимацию появления
       msgDiv.style.animation = `msgAppear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards`;
       chatBody.appendChild(msgDiv);
       
-      // Автоскролл вниз
       chatBody.scrollTop = chatBody.scrollHeight;
 
-      // Если это последнее сообщение, перезапускаем цикл через 5 секунд
       if (index === messages.length - 1) {
         setTimeout(playChatAnimation, 5000);
       }
@@ -85,9 +100,7 @@ function playChatAnimation() {
   });
 }
 
-// Запускаем анимацию чата, когда страница загрузилась
 window.addEventListener('load', playChatAnimation);
-
 
 // --- ЗАЩИТА КОНТЕНТА ---
 document.addEventListener('copy', (e) => e.preventDefault());
