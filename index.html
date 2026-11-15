@@ -10,11 +10,11 @@
   <style>
     :root {
       --bg: #0e0f13;
-      /* Сделал карточки еще светлее для контраста */
-      --card: #1f222e; 
-      --card-border: #3a3f50;
+      /* Улучшенный контраст */
+      --card: #1f2331; 
+      --card-border: #3b4255;
       --text: #ffffff;
-      --muted: #b0b5c5; /* Сделал текст светлее */
+      --muted: #b6bcc9;
       --accent: #6c5ce7;
       --accent-2: #00d1b2;
     }
@@ -55,7 +55,7 @@
     .btn--tg:hover { background: #229ED9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(42, 171, 238, 0.3); }
 
     /* --- Hero --- */
-    .hero { padding: 80px 0 100px; }
+    .hero { padding: 80px 0 60px; }
     .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero__content { flex: 1; max-width: 600px; }
     .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(0, 209, 178, 0.1); border: 1px solid rgba(0, 209, 178, 0.2); color: var(--accent-2); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
@@ -75,7 +75,7 @@
     .phone:hover { transform: rotateY(0deg) rotateX(0deg); }
     .phone__notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 25px; background: #000; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
     .phone__screen { width: 100%; height: 100%; background: var(--bg); border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
-    .chat-header { padding: 40px 20px 15px; background: var(--card); border-bottom: 1px solid #222; display: flex; align-items: center; gap: 12px; }
+    .chat-header { padding: 40px 20px 15px; background: var(--card); border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 12px; }
     .chat-header__avatar { width: 35px; height: 35px; background: var(--accent-2); border-radius: 50%; }
     .chat-header__name { font-weight: 600; font-size: 14px; line-height: 1.2; }
     .chat-body { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; overflow-y: auto; }
@@ -84,17 +84,18 @@
     /* Анимация сообщений */
     .message { padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; position: relative; opacity: 0; transform: translateY(10px); animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
     @keyframes msgAppear { to { opacity: 1; transform: translateY(0); } }
-    .message--in { background: var(--card); border-bottom-left-radius: 4px; align-self: flex-start; }
+    .message--in { background: var(--card); border-bottom-left-radius: 4px; align-self: flex-start; border: 1px solid var(--card-border); }
     .message--out { background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-bottom-right-radius: 4px; align-self: flex-end; }
     
+    /* Индикатор "Печатает..." */
     .typing-dots { display: flex; gap: 4px; align-items: center; height: 18px; padding: 0 5px; }
     .typing-dots span { width: 6px; height: 6px; background-color: var(--muted); border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
     .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
     .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
     @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
-    .chat-input { padding: 15px; background: var(--card); border-top: 1px solid #222; }
-    .chat-input__field { background: #0e0f13; padding: 10px 15px; border-radius: 20px; color: var(--muted); font-size: 13px; }
+    .chat-input { padding: 15px; background: var(--card); border-top: 1px solid var(--card-border); }
+    .chat-input__field { background: var(--bg); padding: 10px 15px; border-radius: 20px; color: var(--muted); font-size: 13px; border: 1px solid var(--card-border); }
 
     /* --- Бегущая строка --- */
     .marquee { width: 100%; overflow: hidden; background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 20px 0; display: flex; white-space: nowrap; }
@@ -102,9 +103,9 @@
     .marquee__content span { font-size: 18px; font-weight: 600; color: var(--muted); }
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* --- Общие стили секций --- */
-    .features, .reviews, .faq { padding: 100px 0; }
-    h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px; letter-spacing: -0.5px; }
+    /* --- Общие стили секций (Уменьшил padding) --- */
+    .features, .reviews, .faq, .roadmap { padding: 70px 0; }
+    h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px; letter-spacing: -0.5px; }
 
     /* --- Features --- */
     .features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
@@ -114,33 +115,33 @@
     .card h3 { font-size: 20px; margin-bottom: 10px; }
     .card p { color: var(--muted); font-size: 15px; }
 
-    /* --- Roadmap (Обновленный) --- */
-    .roadmap { padding: 100px 0; background: rgba(0,0,0,0.2); }
+    /* --- Roadmap (Улучшенный) --- */
+    .roadmap { background: rgba(0,0,0,0.1); border-top: 1px solid rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.02); }
     .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .roadmap-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; position: relative; overflow: hidden; }
     .roadmap-card__status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
-    .roadmap-card__status--done { background: rgba(0, 209, 178, 0.15); color: var(--accent-2); }
-    .roadmap-card__status--progress { background: rgba(108, 92, 231, 0.15); color: #a29bfe; }
+    .roadmap-card__status--done { background: rgba(0, 209, 178, 0.2); color: var(--accent-2); }
+    .roadmap-card__status--progress { background: rgba(108, 92, 231, 0.2); color: #a29bfe; }
     .roadmap-card__status--planned { background: rgba(255, 255, 255, 0.1); color: var(--muted); }
     .roadmap-card h3 { font-size: 20px; margin-bottom: 10px; }
-    .roadmap-card p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
+    .roadmap-card p { color: var(--muted); font-size: 15px; margin-bottom: 25px; }
     
     /* Прогресс-бар */
-    .progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-top: auto; }
-    .progress-bar__fill { height: 100%; border-radius: 3px; }
-    .progress-bar__fill--done { width: 100%; background: var(--accent-2); }
-    .progress-bar__fill--progress { width: 65%; background: var(--accent); }
+    .progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: auto; }
+    .progress-bar__fill { height: 100%; border-radius: 4px; }
+    .progress-bar__fill--done { width: 100%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+    .progress-bar__fill--progress { width: 65%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
     /* --- Отзывы --- */
     .reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
-    .review-card__text { font-size: 15px; margin-bottom: 20px; line-height: 1.6; color: #e0e0e0; }
+    .review-card__text { font-size: 15px; margin-bottom: 20px; line-height: 1.6; color: #e2e8f0; }
     .review-card__author { display: flex; align-items: center; gap: 12px; }
     .review-card__author b { font-size: 14px; display: block; }
     .review-card__author span { font-size: 12px; color: var(--muted); }
 
     /* --- Скачать / Платформы --- */
-    .download { padding: 100px 0; text-align: center; }
+    .download { padding: 70px 0; text-align: center; }
     .download p { color: var(--muted); margin-bottom: 30px; }
     .download__stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
     .stat-item { display: flex; flex-direction: column; align-items: center; }
@@ -154,15 +155,16 @@
     .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
     .platform-btn:hover span { color: var(--text); }
 
-    /* --- FAQ (Стал контрастнее) --- */
-    .faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s; }
-    .faq details:hover { background: #252938; }
-    .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    /* --- FAQ (Стал лучше) --- */
+    .faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 12px; transition: all 0.3s ease; overflow: hidden; }
+    .faq details:hover { border-color: var(--accent); }
+    .faq summary { cursor: pointer; padding: 24px; font-weight: 600; font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
     .faq summary::after { content: '+'; font-size: 24px; color: var(--accent-2); transition: transform 0.3s; }
+    .faq details[open] { background: #252938; border-color: var(--accent-2); }
+    .faq details[open] summary { color: var(--accent-2); }
     .faq details[open] summary::after { transform: rotate(45deg); }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq details[open] summary { color: var(--accent-2); margin-bottom: 12px; }
-    .faq p { color: var(--muted); line-height: 1.6; }
+    .faq p { color: var(--muted); padding: 0 24px 24px; margin: 0; line-height: 1.6; }
 
     /* --- Подвал --- */
     .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; background: rgba(0,0,0,0.2); }
@@ -210,7 +212,8 @@
     }
     @media (max-width: 600px) {
       .nav { display: none; }
-      .hero { padding: 60px 0; }
+      .hero { padding: 50px 0; }
+      .features, .reviews, .faq, .roadmap { padding: 50px 0; }
       .footer__inner { flex-direction: column; text-align: center; }
       .footer__contacts { justify-content: center; }
       .footer__info { align-items: center; }
@@ -336,7 +339,6 @@
     </div>
   </section>
 
-  <!-- Обновленный Roadmap -->
   <section id="roadmap" class="roadmap">
     <div class="container">
       <h2 class="reveal">Что уже готово и что дальше</h2>
@@ -481,12 +483,10 @@
     </div>
   </footer>
 
-  <!-- МОДАЛЬНОЕ ОКНО -->
   <div class="modal" id="modal-container">
     <div class="modal__content">
       <button type="button" class="modal__close js-close-modal">&times;</button>
       
-      <!-- 1. Блок с формой -->
       <div class="modal-block" data-block="general">
         <div class="modal__icon">📩</div>
         <h3>Займи место в очереди</h3>
@@ -511,7 +511,6 @@
         </form>
       </div>
 
-      <!-- 2. Экран успеха с номером в очереди -->
       <div class="modal-block" data-block="success">
         <div class="modal__icon" style="color: #00d1b2;">✅</div>
         <h3>Ты в списке!</h3>
@@ -528,7 +527,6 @@
         <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
       </div>
 
-      <!-- 3. Блок для iOS -->
       <div class="modal-block" data-block="ios">
         <div class="modal__icon">🍏</div>
         <h3>Скоро в App Store!</h3>
@@ -536,7 +534,6 @@
         <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--tg" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
       </div>
 
-      <!-- 4. Блок для ПК -->
       <div class="modal-block" data-block="pc">
         <div class="modal__icon">💻</div>
         <h3>Скоро на компьютере!</h3>
@@ -547,7 +544,6 @@
     </div>
   </div>
 
-  <!-- ВСТРОЕННЫЙ СКРИПТ -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       
@@ -602,7 +598,6 @@
           })
           .then(async (response) => {
             if (response.status == 200) {
-              // Генерируем случайный номер в очереди
               const randomNum = Math.floor(Math.random() * 50) + 251;
               queueNumberEl.textContent = '#' + randomNum;
               
@@ -623,7 +618,7 @@
         });
       }
 
-      // 3. Анимации и Живой чат с эффектом "Печатает..."
+      // 3. Анимации и Живой чат
       const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -660,7 +655,6 @@
 
           const msg = messages[msgIndex];
           
-          // 1. Показываем анимацию "Печатает..." для входящих
           if (msg.type === 'in') {
             const typingDiv = document.createElement('div');
             typingDiv.className = 'message message--in';
@@ -671,9 +665,8 @@
             setTimeout(() => {
               chatBody.removeChild(typingDiv);
               addMessage(msg);
-            }, 1500); // Ждем 1.5 сек пока "печатает"
+            }, 1500);
           } else {
-            // Исходящие появляются сразу (или с небольшой задержкой)
             setTimeout(() => {
               addMessage(msg);
             }, 500);
@@ -688,7 +681,7 @@
           chatBody.scrollTop = chatBody.scrollHeight;
           
           msgIndex++;
-          setTimeout(showNext, 1200); // Пауза между сообщениями
+          setTimeout(showNext, 1200);
         }
 
         playChat();
