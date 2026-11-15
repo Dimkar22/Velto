@@ -22,48 +22,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-
   // 3. РАБОТА МОДАЛЬНОГО ОКНА
   const modal = document.getElementById('modal-container');
   const blocks = document.querySelectorAll('.modal-block');
 
-  // Функция открытия
   document.querySelectorAll('.js-open-modal').forEach(btn => {
     btn.addEventListener('click', () => {
       const target = btn.getAttribute('data-target');
-      
-      // Прячем все блоки, показываем нужный
       blocks.forEach(b => b.style.display = 'none');
       const activeBlock = document.querySelector(`.modal-block[data-block="${target}"]`);
       if (activeBlock) activeBlock.style.display = 'block';
 
       modal.classList.add('is-active');
-      document.body.style.overflow = 'hidden'; // Запрет скролла
+      document.body.style.overflow = 'hidden';
     });
   });
 
-  // Функция закрытия
   document.querySelectorAll('.js-close-modal').forEach(btn => {
     btn.addEventListener('click', closeModal);
   });
 
-  // Закрытие по клику на фон
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
 
-  // Закрытие по Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
 
   function closeModal() {
     modal.classList.remove('is-active');
-    document.body.style.overflow = ''; // Возврат скролла
+    document.body.style.overflow = '';
   }
 
-
-  // 4. ЖИВОЙ ЧАТ (Анимация)
+  // 4. ЖИВОЙ ЧАТ
   const chatBody = document.getElementById('chat-body');
   if (chatBody) {
     const messages = [
@@ -75,44 +67,30 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let msgIndex = 0;
-
     function playChat() {
       chatBody.innerHTML = '';
       msgIndex = 0;
-      
       function showNext() {
         if (msgIndex >= messages.length) {
-          setTimeout(playChat, 4000); // Перезапуск
+          setTimeout(playChat, 4000);
           return;
         }
-
         const msg = messages[msgIndex];
         const msgDiv = document.createElement('div');
         msgDiv.className = `message message--${msg.type}`;
         msgDiv.textContent = msg.text;
         chatBody.appendChild(msgDiv);
         chatBody.scrollTop = chatBody.scrollHeight;
-
         msgIndex++;
-        setTimeout(showNext, 1500); // Пауза
+        setTimeout(showNext, 1500);
       }
-
       setTimeout(showNext, 1000);
     }
-
     playChat();
   }
-
 
   // 5. ЗАЩИТА
   document.addEventListener('copy', (e) => e.preventDefault());
   document.addEventListener('cut', (e) => e.preventDefault());
   document.addEventListener('contextmenu', (e) => e.preventDefault());
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'PrintScreen' || e.keyCode === 44) {
-      e.preventDefault();
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(''); 
-    }
-  });
-
 });
