@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velto — Мессенджер нового поколения</title>
-  <meta name="description" content="Velto — быстрый и безопасный мессенджер для общения без границ.">
+  <meta name="description" content="Velto — быстрый и безопасный мессенджер для общения без границ. Попробуйте прямо в браузере!">
   
-  <!-- Open Graph (для красивого шаринга) -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Velto — Мессенджер нового поколения">
   <meta property="og:description" content="Общение без границ. Доставка сообщений < 80 мс. Без рекламы и трекеров.">
   <meta property="og:type" content="website">
@@ -42,7 +42,8 @@
         <a href="#reviews">Отзывы</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a href="#download" class="btn btn--primary btn--small">В лист ожидания</a>
+      <!-- Кнопка в шапке ведет в мессенджер -->
+      <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--small">Открыть мессенджер</a>
     </div>
   </header>
 
@@ -50,12 +51,13 @@
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
-        <div class="badge">⚡ Скоро в RuStore</div>
+        <div class="badge">⚡ Уже доступно в браузере</div>
         <h1>Мессенджер, который <span>не тормозит</span></h1>
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <a href="#download" class="btn btn--primary btn--glow">Скачать бесплатно</a>
+          <!-- Главная кнопка ведет в мессенджер -->
+          <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow">Открыть мессенджер</a>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
         
@@ -82,7 +84,7 @@
               <div class="chat-header__name">Velto Team <br><span style="font-size:10px; color:#00d1b2;">в сети</span></div>
             </div>
             <div class="chat-body" id="chat-body">
-              <!-- Сообщения будут добавляться через JS -->
+              <!-- Сообщения добавляются через JS -->
             </div>
             <div class="chat-input">
               <div class="chat-input__field">Сообщение...</div>
@@ -168,11 +170,11 @@
     </div>
   </section>
 
-  <!-- Скачать / Waitlist -->
+  <!-- Скачать / Открыть мессенджер -->
   <section id="download" class="download">
     <div class="container download__inner reveal">
       <h2>Начни общаться прямо сейчас</h2>
-      <p>Совсем скоро Velto появится в RuStore</p>
+      <p>Протестируй Velto прямо в браузере — без установки</p>
       
       <div class="download__stats">
         <div class="stat-item">
@@ -190,9 +192,10 @@
       </div>
 
       <div class="download__buttons">
-        <button type="button" onclick="openModal(event)" class="btn btn--store btn--large">📱 Скачать в RuStore</button>
+        <!-- Кнопка ведет в мессенджер -->
+        <a href="https://veltoapp.djm-220422.workers.dev/" target="_blank" class="btn btn--primary btn--glow btn--large">Открыть мессенджер</a>
       </div>
-      <p class="download__note">Уже в закрытом тестировании. Скоро появится в RuStore.</p>
+      <p class="download__note">Бесплатно. Без рекламы. Работает в браузере.</p>
     </div>
   </section>
 
@@ -215,7 +218,7 @@
         </details>
         <details>
           <summary>Где скачать приложение?</summary>
-          <p>Совсем скоро Velto появится в магазине приложений RuStore. Следите за обновлениями!</p>
+          <p>Прямо сейчас вы можете открыть веб-версию Velto по кнопке выше. Скоро появится версия в RuStore.</p>
         </details>
       </div>
     </div>
@@ -243,23 +246,6 @@
     </div>
   </footer>
 
-  <!-- Модальное окно RuStore -->
-  <div id="ruStoreModal" class="modal">
-    <div class="modal__content">
-      <button type="button" class="modal__close" onclick="closeModal()">&times;</button>
-      <div class="modal__icon">🚀</div>
-      <h3>Скоро в RuStore!</h3>
-      <p>Мы активно готовим релиз Velto. Приложение появится в магазине в ближайшее время.</p>
-      
-      <!-- Имитация листа ожидания -->
-      <div style="margin-top: 20px; text-align: left;">
-        <label style="font-size: 13px; color: var(--muted); margin-bottom: 5px; display: block;">Узнать первым о релизе:</label>
-        <input type="email" placeholder="Ваш Email или @username" style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #2a2c38; background: #0e0f13; color: #fff; margin-bottom: 10px; outline: none;">
-        <button type="button" onclick="closeModal()" class="btn btn--primary btn--glow" style="width: 100%;">В лист ожидания</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Кнопка Наверх -->
   <button class="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Наверх">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -269,4 +255,4 @@
 
   <script src="script.js"></script>
 </body>
-          </html>
+</html>
