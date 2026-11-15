@@ -5,10 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velto — Мессенджер нового поколения</title>
   <meta name="description" content="Velto — быстрый и безопасный мессенджер. Скоро в RuStore!">
-  
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a1210'/%3E%3Cpath d='M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z' fill='%2300d1b2'/%3E%3C/svg%3E">
 
-  <!-- ВСТРОЕННЫЕ СТИЛИ, ЧТОБЫ ОНИ ТОЧНО ЗАГРУЗИЛИСЬ -->
+  <!-- ВСТРОЕННЫЕ СТИЛИ -->
   <style>
     :root {
       --bg: #0e0f13;
@@ -35,26 +34,17 @@
     input, textarea { -webkit-user-select: text; user-select: text; }
     img { pointer-events: none; -webkit-user-drag: none; }
 
-    .container {
-      max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
     /* --- Анимированный фон --- */
-    .bg-glow {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none;
-    }
-    .bg-glow__circle {
-      position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 10s infinite alternate ease-in-out;
-    }
+    .bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none; }
+    .bg-glow__circle { position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 10s infinite alternate ease-in-out; }
     .bg-glow__circle--1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
     .bg-glow__circle--2 { width: 500px; height: 500px; background: var(--accent-2); bottom: -200px; right: -150px; animation-delay: -5s; }
     @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
     /* --- Header --- */
-    .header {
-      position: sticky; top: 0; background: rgba(14, 15, 19, 0.8);
-      backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100;
-    }
+    .header { position: sticky; top: 0; background: rgba(14, 15, 19, 0.8); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
     .header__inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
     .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .logo span { color: var(--accent-2); }
@@ -62,18 +52,10 @@
     .nav { display: flex; gap: 24px; }
     .nav a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color 0.2s; }
     .nav a:hover { color: var(--text); }
-
     .header__actions { display: flex; align-items: center; gap: 15px; }
 
-    /* --- Кнопки (жестко переопределяем) --- */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 12px 24px; border-radius: 12px;
-      text-decoration: none !important;
-      font-weight: 600; font-size: 16px; font-family: inherit;
-      border: none; cursor: pointer; transition: all 0.3s ease;
-      text-align: center; line-height: 1.2;
-    }
+    /* --- Кнопки --- */
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 12px; text-decoration: none !important; font-weight: 600; font-size: 16px; font-family: inherit; border: none; cursor: pointer; transition: all 0.3s ease; text-align: center; line-height: 1.2; }
     .btn--primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff !important; }
     .btn--glow { box-shadow: 0 0 20px rgba(0, 209, 178, 0.3); }
     .btn--glow:hover { box-shadow: 0 0 35px rgba(0, 209, 178, 0.6); transform: translateY(-2px); }
@@ -85,11 +67,7 @@
     .hero { padding: 80px 0 100px; }
     .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero__content { flex: 1; max-width: 600px; }
-    .badge {
-      display: inline-block; padding: 6px 14px; border-radius: 20px;
-      background: rgba(0, 209, 178, 0.1); border: 1px solid rgba(0, 209, 178, 0.2);
-      color: var(--accent-2); font-size: 13px; font-weight: 600; margin-bottom: 20px;
-    }
+    .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(0, 209, 178, 0.1); border: 1px solid rgba(0, 209, 178, 0.2); color: var(--accent-2); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
     .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
     .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p { color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); margin-bottom: 36px; }
@@ -101,30 +79,17 @@
 
     /* --- Мокап смартфона --- */
     .hero__phone { flex: 1; display: flex; justify-content: center; perspective: 1000px; position: relative; }
-    .phone-glow {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 300px; height: 300px; background: var(--accent-2); filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none;
-    }
-    .phone {
-      width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #222;
-      position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1;
-    }
+    .phone-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; background: var(--accent-2); filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none; }
+    .phone { width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 2px #222; position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1; }
     .phone:hover { transform: rotateY(0deg) rotateX(0deg); }
-    .phone__notch {
-      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-      width: 100px; height: 25px; background: #000; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10;
-    }
+    .phone__notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 25px; background: #000; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
     .phone__screen { width: 100%; height: 100%; background: var(--bg); border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
     .chat-header { padding: 40px 20px 15px; background: var(--card); border-bottom: 1px solid #222; display: flex; align-items: center; gap: 12px; }
     .chat-header__avatar { width: 35px; height: 35px; background: var(--accent-2); border-radius: 50%; }
     .chat-header__name { font-weight: 600; font-size: 14px; line-height: 1.2; }
     .chat-body { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; overflow-y: auto; }
     .chat-body::-webkit-scrollbar { display: none; }
-    .message {
-      padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; position: relative;
-      opacity: 0; transform: translateY(10px); animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-    }
+    .message { padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; position: relative; opacity: 0; transform: translateY(10px); animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
     @keyframes msgAppear { to { opacity: 1; transform: translateY(0); } }
     .message--in { background: var(--card); border-bottom-left-radius: 4px; align-self: flex-start; }
     .message--out { background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-bottom-right-radius: 4px; align-self: flex-end; }
@@ -177,15 +142,11 @@
     .stat-label { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
 
     .platforms { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-    .platform-btn {
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-      width: 130px; height: 110px; background: var(--card); border: 1px solid var(--card-border);
-      border-radius: 16px; color: var(--text); cursor: pointer; transition: all 0.3s ease;
-    }
-    .platform-btn svg { width: 42px; height: 42px; fill: var(--muted); transition: fill 0.3s; }
+    .platform-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 130px; height: 110px; background: var(--card); border: 1px solid var(--card-border); border-radius: 16px; color: var(--text); cursor: pointer; transition: all 0.3s ease; }
+    .platform-btn svg { width: 42px; height: 42px; transition: fill 0.3s; }
     .platform-btn span { font-size: 13px; font-weight: 600; color: var(--muted); transition: color 0.3s; }
     .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
-    .platform-btn:hover svg, .platform-btn:hover span { fill: var(--text); color: var(--text); }
+    .platform-btn:hover span { color: var(--text); }
 
     /* --- FAQ --- */
     .faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s; }
@@ -205,17 +166,12 @@
     .footer__link:hover { color: var(--accent-2) !important; }
     .footer__contacts { display: flex; gap: 15px; flex-wrap: wrap; }
 
-    .tg-link {
-      display: inline-flex !important; align-items: center !important; gap: 12px !important;
-      color: #ffffff !important; text-decoration: none !important; font-weight: 600; font-size: 15px;
-      background: rgba(255, 255, 255, 0.03); padding: 8px 18px 8px 8px; border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.3s, border-color 0.3s, transform 0.2s;
-    }
+    .tg-link { display: inline-flex !important; align-items: center !important; gap: 12px !important; color: #ffffff !important; text-decoration: none !important; font-weight: 600; font-size: 15px; background: rgba(255, 255, 255, 0.03); padding: 8px 18px 8px 8px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.3s, border-color 0.3s, transform 0.2s; }
     .tg-link:hover { background: rgba(0, 209, 178, 0.1); border-color: rgba(0, 209, 178, 0.3); transform: translateY(-2px); }
     .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
     .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-    /* --- ЧИСТЫЙ CSS ДЛЯ МОДАЛЬНОГО ОКНА --- */
+    /* --- МОДАЛЬНОЕ ОКНО НА CSS --- */
     .modal-toggle { display: none; }
 
     .modal {
@@ -232,27 +188,27 @@
       position: relative; animation: modalSlide 0.3s forwards; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    @keyframes modalSlide {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    @keyframes modalSlide { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-    .modal__close {
-      position: absolute; top: 15px; right: 15px; background: transparent; border: none;
-      color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s;
-      text-decoration: none; line-height: 1;
-    }
+    .modal__close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s; text-decoration: none; line-height: 1; }
     .modal__close:hover { color: var(--text); transform: rotate(90deg); }
     .modal__icon { font-size: 48px; margin-bottom: 15px; }
     .modal h3 { font-size: 24px; margin-bottom: 10px; }
     .modal p { color: var(--muted); font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
 
-    .waitlist-input {
-      width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border);
-      background: var(--bg); color: var(--text); font-size: 16px; outline: none;
-      margin-bottom: 15px; transition: border-color 0.2s;
-    }
+    .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; margin-bottom: 15px; transition: border-color 0.2s; }
     .waitlist-input:focus { border-color: var(--accent-2); }
+
+    /* СКРЫВАЕМ ВСЕ МОДАЛЬНЫЕ БЛОКИ ПО УМОЛЧАНИЮ */
+    .modal-block { display: none; }
+
+    /* ПОКАЗЫВАЕМ НУЖНЫЙ БЛОК В ЗАВИСИМОСТИ ОТ ВЫБРАННОЙ КНОПКИ */
+    #toggle-rustore:checked ~ .modal .modal-block--rustore,
+    #toggle-ios:checked ~ .modal .modal-block--ios,
+    #toggle-pc:checked ~ .modal .modal-block--pc,
+    #toggle-general:checked ~ .modal .modal-block--general {
+      display: block;
+    }
 
     /* --- Анимация --- */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -304,7 +260,8 @@
       </nav>
 
       <div class="header__actions">
-        <label for="modal-toggle" class="btn btn--primary btn--small">В лист ожидания</label>
+        <!-- Кнопка "В лист ожидания" в шапке -->
+        <label for="toggle-general" class="btn btn--primary btn--small">В лист ожидания</label>
       </div>
     </div>
   </header>
@@ -317,7 +274,8 @@
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <label for="modal-toggle" class="btn btn--primary btn--glow">Занять место в очереди</label>
+          <!-- Кнопка "Занять место" -->
+          <label for="toggle-general" class="btn btn--primary btn--glow">Занять место в очереди</label>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
         
@@ -467,23 +425,23 @@
       </div>
 
       <div class="platforms">
-        <!-- НОВЫЙ ЛОГОТИП RUSTORE (синий) -->
-        <label for="modal-toggle" class="platform-btn" aria-label="RuStore">
-          <svg viewBox="0 0 100 100" fill="currentColor">
-            <path d="M20 25 C20 20, 25 15, 30 15 L70 15 C75 15, 80 20, 80 25 L80 75 C80 80, 75 85, 70 85 L30 85 C25 85, 20 80, 20 75 Z" fill="#0077FF" />
-            <path d="M35 35 L65 35 L65 65 L35 65 Z" fill="#ffffff" />
-            <path d="M42 42 L58 42 L58 58 L42 58 Z" fill="#0077FF" />
-            <path d="M20 65 L80 65 L80 75 C80 80, 75 85, 70 85 L30 85 C25 85, 20 80, 20 75 Z" fill="#0077FF" />
+        <!-- 1. Кнопка RuStore (открывает модалку с формой) -->
+        <label for="toggle-rustore" class="platform-btn" aria-label="RuStore">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="#0077FF"/>
+            <rect x="8" y="8" width="8" height="8" fill="#ffffff"/>
           </svg>
           <span>RuStore</span>
         </label>
         
-        <label for="modal-toggle" class="platform-btn" aria-label="iOS">
+        <!-- 2. Кнопка iOS (открывает модалку "Скоро в App Store") -->
+        <label for="toggle-ios" class="platform-btn" aria-label="iOS">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           <span>iOS</span>
         </label>
         
-        <label for="modal-toggle" class="platform-btn" aria-label="ПК">
+        <!-- 3. Кнопка ПК (открывает модалку "Скоро на Windows/macOS") -->
+        <label for="toggle-pc" class="platform-btn" aria-label="ПК">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
           <span>Компьютер</span>
         </label>
@@ -532,19 +490,53 @@
     </div>
   </footer>
 
-  <!-- МАГИЯ ЧИСТОГО CSS ДЛЯ МОДАЛКИ -->
-  <input type="checkbox" id="modal-toggle" class="modal-toggle">
+  <!-- СКРЫТЫЕ РАДИОКНОПКИ ДЛЯ УПРАВЛЕНИЯ МОДАЛКОЙ -->
+  <input type="radio" name="modal-state" id="toggle-general" class="modal-toggle" checked>
+  <input type="radio" name="modal-state" id="toggle-rustore" class="modal-toggle">
+  <input type="radio" name="modal-state" id="toggle-ios" class="modal-toggle">
+  <input type="radio" name="modal-state" id="toggle-pc" class="modal-toggle">
   
+  <!-- Если нажать на крестик, мы возвращаем общий чекбокс в исходное состояние -->
+  <input type="checkbox" id="modal-close" class="modal-toggle" style="display:none;">
+
   <div class="modal">
     <div class="modal__content">
-      <label for="modal-toggle" class="modal__close">&times;</label>
+      <label for="toggle-general" class="modal__close" style="cursor:pointer;">&times;</label>
       
-      <div class="modal__icon">📩</div>
-      <h3>Займи место в очереди</h3>
-      <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
-      
-      <input type="text" placeholder="Email или @username" class="waitlist-input">
-      <label for="modal-toggle" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">В лист ожидания</label>
+      <!-- Блок для "Общей" кнопки (Лист ожидания) -->
+      <div class="modal-block modal-block--general">
+        <div class="modal__icon">📩</div>
+        <h3>Займи место в очереди</h3>
+        <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
+        <input type="text" placeholder="Email или @username" class="waitlist-input">
+        <label for="toggle-general" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">В лист ожидания</label>
+      </div>
+
+      <!-- Блок для кнопки RuStore -->
+      <div class="modal-block modal-block--rustore">
+        <div class="modal__icon">📱</div>
+        <h3>Скоро в RuStore!</h3>
+        <p>Мы готовим официальный релиз для RuStore. Оставь свой Email, чтобы узнать о выходе первым!</p>
+        <input type="text" placeholder="Email или @username" class="waitlist-input">
+        <label for="toggle-general" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Узнать о релизе</label>
+      </div>
+
+      <!-- Блок для кнопки iOS -->
+      <div class="modal-block modal-block--ios">
+        <div class="modal__icon">🍏</div>
+        <h3>Скоро в App Store!</h3>
+        <p>Мы активно разрабатываем версию для iPhone. Следите за обновлениями в нашем Telegram-канале!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Перейти в Telegram</a>
+      </div>
+
+      <!-- Блок для кнопки ПК -->
+      <div class="modal-block modal-block--pc">
+        <div class="modal__icon">💻</div>
+        <h3>Скоро на компьютере!</h3>
+        <p>Приложение для Windows и macOS уже в разработке. Мы сообщим, как только оно будет готово!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">Перейти в Telegram</a>
+      </div>
+
     </div>
   </div>
 
