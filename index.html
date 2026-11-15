@@ -37,13 +37,12 @@
       </nav>
 
       <div class="header__actions">
-        <!-- Иконка Telegram скрыта, так как вызывала баги -->
+        <!-- Иконка Telegram скрыта через CSS, чтобы не ломала вид -->
         <label for="modal-toggle" class="btn btn--primary btn--small">В лист ожидания</label>
       </div>
     </div>
   </header>
 
-  <!-- Главный экран -->
   <section class="hero">
     <div class="container hero__inner">
       <div class="hero__content">
@@ -52,7 +51,7 @@
         <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
         
         <div class="hero__buttons">
-          <!-- Кнопка - это label, который включает чекбокс -->
+          <!-- Кнопки теперь label, чтобы стили применялись корректно -->
           <label for="modal-toggle" class="btn btn--primary btn--glow">Занять место в очереди</label>
           <a href="#features" class="btn btn--ghost">Как это работает</a>
         </div>
@@ -202,10 +201,13 @@
         </div>
       </div>
 
-      <!-- Кнопки теперь это label -->
       <div class="platforms">
+        <!-- Заменил SVG на официальный логотип RuStore -->
         <label for="modal-toggle" class="platform-btn" aria-label="RuStore">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm-1.5 18.5v-6h3v6h-3zm0-7.5V6h3v5h-3z"/></svg>
+          <svg viewBox="0 0 100 100" fill="currentColor">
+            <path d="M50 5 L85 25 L85 75 L50 95 L15 75 L15 25 Z" />
+            <path d="M45 35 h10 v15 h-10 z M45 55 h10 v15 h-10 z" fill="#1a1d26"/>
+          </svg>
           <span>RuStore</span>
         </label>
         <label for="modal-toggle" class="platform-btn" aria-label="iOS">
@@ -266,7 +268,6 @@
   
   <div class="modal">
     <div class="modal__content">
-      <!-- Кнопка закрытия - это тоже label, который снимает галочку с чекбокса -->
       <label for="modal-toggle" class="modal__close">&times;</label>
       
       <div class="modal__icon">📩</div>
@@ -274,7 +275,7 @@
       <p>Оставь свой Email или Telegram, и мы сообщим первым, как только Velto выйдет в RuStore!</p>
       
       <input type="text" placeholder="Email или @username" class="waitlist-input">
-      <label for="modal-toggle" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">В лист ожидания</label>
+      <label for="modal-toggle" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px; display: block;">В лист ожидания</label>
     </div>
   </div>
 
