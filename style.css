@@ -52,12 +52,24 @@ img { pointer-events: none; -webkit-user-drag: none; }
 .nav a:hover { color: var(--text); }
 
 .header__actions { display: flex; align-items: center; gap: 15px; }
-.header__tg { 
-  color: var(--muted); transition: color 0.2s; display: flex; align-items: center; justify-content: center;
-  width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05);
+/* Прячем иконку Telegram, которая ломала верстку */
+.header__tg { display: none !important; }
+
+/* --- ГЛАВНЫЕ КНОПКИ (ИСПРАВЛЕНО) --- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; border-radius: 12px;
+  text-decoration: none !important; /* Убираем синюю линию */
+  font-weight: 600; font-size: 16px; font-family: inherit;
+  border: none; cursor: pointer; transition: all 0.3s ease;
+  text-align: center; line-height: 1.2;
 }
-.header__tg:hover { color: var(--accent-2); background: rgba(0, 209, 178, 0.1); }
-.header__tg svg { width: 20px; height: 20px; }
+.btn--primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff; }
+.btn--glow { box-shadow: 0 0 20px rgba(0, 209, 178, 0.3); }
+.btn--glow:hover { box-shadow: 0 0 35px rgba(0, 209, 178, 0.6); transform: translateY(-2px); }
+.btn--ghost { border: 1px solid var(--card-border); color: var(--text); background: rgba(255,255,255,0.02); }
+.btn--ghost:hover { border-color: var(--muted); background: rgba(255,255,255,0.05); }
+.btn--small { padding: 8px 16px; font-size: 14px; }
 
 /* --- Hero --- */
 .hero { padding: 80px 0 100px; }
@@ -160,7 +172,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
   width: 130px; height: 110px; background: var(--card); border: 1px solid var(--card-border);
   border-radius: 16px; color: var(--text); cursor: pointer; transition: all 0.3s ease;
 }
-.platform-btn svg { width: 32px; height: 32px; fill: var(--muted); transition: fill 0.3s; }
+.platform-btn svg { width: 36px; height: 36px; fill: var(--muted); transition: fill 0.3s; }
 .platform-btn span { font-size: 13px; font-weight: 600; color: var(--muted); transition: color 0.3s; }
 .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
 .platform-btn:hover svg, .platform-btn:hover span { fill: var(--text); color: var(--text); }
@@ -193,29 +205,21 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
 .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-/* --- ЧИСТЫЙ CSS ДЛЯ МОДАЛЬНОГО ОКНА (Исправлено) --- */
-.modal-toggle {
-  display: none; /* Прячем сам чекбокс */
-}
+/* --- ЧИСТЫЙ CSS ДЛЯ МОДАЛЬНОГО ОКНА --- */
+.modal-toggle { display: none; }
 
 .modal {
-  display: none; /* По умолчанию окно скрыто */
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
   align-items: center; justify-content: center;
 }
 
-/* Когда чекбокс включен — показываем окно */
-.modal-toggle:checked ~ .modal {
-  display: flex;
-}
+.modal-toggle:checked ~ .modal { display: flex; }
 
 .modal__content {
   background: var(--card); border: 1px solid var(--card-border); border-radius: 24px;
   padding: 40px 30px 30px; max-width: 400px; width: 90%; text-align: center;
-  position: relative;
-  animation: modalSlide 0.3s forwards;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  position: relative; animation: modalSlide 0.3s forwards; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 @keyframes modalSlide {
@@ -226,6 +230,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .modal__close {
   position: absolute; top: 15px; right: 15px; background: transparent; border: none;
   color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s;
+  text-decoration: none; line-height: 1;
 }
 .modal__close:hover { color: var(--text); transform: rotate(90deg); }
 .modal__icon { font-size: 48px; margin-bottom: 15px; }
@@ -238,11 +243,6 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
   margin-bottom: 15px; transition: border-color 0.2s;
 }
 .waitlist-input:focus { border-color: var(--accent-2); }
-
-/* Скрываем иконку Telegram в шапке, если она ломает верстку */
-.header__tg {
-  display: none !important; 
-}
 
 /* --- Анимация --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
