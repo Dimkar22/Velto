@@ -1,129 +1,135 @@
-// --- Плавная прокрутка к якорям ---
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    const target = document.querySelector(link.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-// --- Анимация появления секций при скролле ---
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-
-// --- ЛОГИКА WAITLIST (Лист ожидания) ---
-function openWaitlist() {
-  const modal = document.getElementById('waitlistModal');
-  document.getElementById('waitlist-form').style.display = 'block';
-  document.getElementById('waitlist-success').style.display = 'none';
-  document.getElementById('waitlist-input').value = '';
+document.addEventListener('DOMContentLoaded', () => {
   
-  modal.classList.add('is-active');
-  document.body.style.overflow = 'hidden';
-  setTimeout(() => document.getElementById('waitlist-input').focus(), 300);
-}
-
-function closeModal() {
-  const modal = document.getElementById('waitlistModal');
-  modal.classList.remove('is-active');
-  document.body.style.overflow = '';
-}
-
-function submitWaitlist(e) {
-  e.preventDefault();
-  const input = document.getElementById('waitlist-input').value;
-  if (!input) return;
-
-  // Имитация загрузки (здесь потом можно добавить отправку на сервер)
-  const btn = e.target.querySelector('button');
-  btn.textContent = 'Отправка...';
-  
-  setTimeout(() => {
-    document.getElementById('waitlist-form').style.display = 'none';
-    document.getElementById('waitlist-success').style.display = 'block';
-    btn.textContent = 'В лист ожидания';
-  }, 800);
-}
-
-// Закрытие модалки
-window.onclick = function(event) {
-  if (event.target === document.getElementById('waitlistModal')) closeModal();
-}
-document.addEventListener('keydown', function(event) {
-  if (event.key === 'Escape') closeModal();
-});
-
-
-// --- ЖИВОЙ ЧАТ С ЭФФЕКТОМ ПЕЧАТИ ---
-const chatBody = document.getElementById('chat-body');
-const messages = [
-  { text: "Привет! Как тебе новый мессенджер? 👋", type: "in" },
-  { text: "Просто огонь! Очень быстрый 🔥", type: "out" },
-  { text: "А дизайн какой красивый 😍", type: "in" },
-  { text: "Согласен! Переходим всей командой", type: "out" },
-  { text: "Скоро в RuStore, ждем всех!", type: "in" }
-];
-
-let msgIndex = 0;
-
-function typeMessage(messageObj) {
-  const msgDiv = document.createElement('div');
-  msgDiv.className = `message message--${messageObj.type} typing`;
-  chatBody.appendChild(msgDiv);
-  
-  let i = 0;
-  const text = messageObj.text;
-  
-  function type() {
-    if (i < text.length) {
-      msgDiv.innerHTML = text.substring(0, i + 1) + '<span class="typing-cursor"></span>';
-      i++;
-      chatBody.scrollTop = chatBody.scrollHeight;
-      setTimeout(type, 40); // Скорость печати (40мс на символ)
-    } else {
-      msgDiv.innerHTML = text;
-      msgDiv.classList.remove('typing');
-      chatBody.scrollTop = chatBody.scrollHeight;
-      
-      msgIndex++;
-      if (msgIndex < messages.length) {
-        setTimeout(() => typeMessage(messages[msgIndex]), 1000); // Пауза перед следующим
-      } else {
-        setTimeout(() => {
-          chatBody.innerHTML = '';
-          msgIndex = 0;
-          typeMessage(messages[0]);
-        }, 4000); // Перезапуск чата через 4 секунды
+  // 1. Плавная прокрутка
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
       }
-    }
-  }
+    });
+  });
+
+  // 2. Анимация появления
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+
+  // 3. ЛОГИКА WAITLIST (Лист ожидания)
+  const modal = document.getElementById('waitlistModal');
+  const formBlock = document.getElementById('waitlist-form');
+  const successBlock = document.getElementById('waitlist-success');
+  const waitlistForm = document.getElementById('waitlistForm');
+  const waitlistInput = document.getElementById('waitlist-input');
+
+  // Открытие модалки (навешиваем на все кнопки с классом js-open-waitlist)
+  document.querySelectorAll('.js-open-waitlist').forEach(btn => {
+    btn.addEventListener('click', () => {
+      formBlock.style.display = 'block';
+      successBlock.style.display = 'none';
+      waitlistInput.value = '';
+      
+      modal.classList.add('is-active');
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => waitlistInput.focus(), 300);
+    });
+  });
+
+  // Закрытие модалки
+  document.querySelectorAll('.js-close-modal').forEach(btn => {
+    btn.addEventListener('click', closeModal);
+  });
   
-  type();
-}
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 
-// Запуск чата
-window.addEventListener('load', () => {
-  setTimeout(() => typeMessage(messages[0]), 1000);
-});
-
-
-// --- ЗАЩИТА КОНТЕНТА ---
-document.addEventListener('copy', (e) => e.preventDefault());
-document.addEventListener('cut', (e) => e.preventDefault());
-document.addEventListener('contextmenu', (e) => e.preventDefault());
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'PrintScreen' || e.keyCode === 44) {
-    e.preventDefault();
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(''); 
+  function closeModal() {
+    modal.classList.remove('is-active');
+    document.body.style.overflow = '';
   }
+
+  // Отправка формы
+  if (waitlistForm) {
+    waitlistForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const val = waitlistInput.value.trim();
+      if (!val) return;
+
+      const submitBtn = waitlistForm.querySelector('button');
+      submitBtn.textContent = 'Отправка...';
+      
+      setTimeout(() => {
+        formBlock.style.display = 'none';
+        successBlock.style.display = 'block';
+        submitBtn.textContent = 'В лист ожидания';
+      }, 800);
+    });
+  }
+
+
+  // 4. ЖИВОЙ ЧАТ (Анимация)
+  const chatBody = document.getElementById('chat-body');
+  if (chatBody) {
+    const messages = [
+      { text: "Привет! Как тебе новый мессенджер? 👋", type: "in" },
+      { text: "Просто огонь! Очень быстрый 🔥", type: "out" },
+      { text: "А дизайн какой красивый 😍", type: "in" },
+      { text: "Согласен! Переходим всей командой", type: "out" },
+      { text: "Скоро в RuStore, ждем всех!", type: "in" }
+    ];
+
+    let msgIndex = 0;
+
+    function playChat() {
+      chatBody.innerHTML = '';
+      msgIndex = 0;
+      
+      function showNext() {
+        if (msgIndex >= messages.length) {
+          setTimeout(playChat, 4000); // Перезапуск
+          return;
+        }
+
+        const msg = messages[msgIndex];
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `message message--${msg.type}`;
+        msgDiv.textContent = msg.text;
+        chatBody.appendChild(msgDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        msgIndex++;
+        setTimeout(showNext, 1500); // Пауза между сообщениями
+      }
+
+      setTimeout(showNext, 1000);
+    }
+
+    playChat();
+  }
+
+
+  // 5. ЗАЩИТА
+  document.addEventListener('copy', (e) => e.preventDefault());
+  document.addEventListener('cut', (e) => e.preventDefault());
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'PrintScreen' || e.keyCode === 44) {
+      e.preventDefault();
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(''); 
+    }
+  });
+
 });
