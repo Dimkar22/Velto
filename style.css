@@ -1,6 +1,6 @@
 :root {
   --bg: #0e0f13;
-  --card: #1a1d26; /* Сделал карточки светлее */
+  --card: #1a1d26; 
   --card-border: #2f3341;
   --text: #ffffff;
   --muted: #a0a4b8;
@@ -16,7 +16,6 @@ body {
   color: var(--text);
   line-height: 1.6;
   overflow-x: hidden;
-  position: relative;
   -webkit-user-select: none;
   user-select: none;
 }
@@ -30,13 +29,10 @@ img { pointer-events: none; -webkit-user-drag: none; }
 
 /* --- Анимированный фон --- */
 .bg-glow {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  z-index: 0; overflow: hidden; pointer-events: none;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; overflow: hidden; pointer-events: none;
 }
 .bg-glow__circle {
-  position: absolute; border-radius: 50%;
-  filter: blur(100px); opacity: 0.15;
-  animation: float 10s infinite alternate ease-in-out;
+  position: absolute; border-radius: 50%; filter: blur(100px); opacity: 0.15; animation: float 10s infinite alternate ease-in-out;
 }
 .bg-glow__circle--1 { width: 400px; height: 400px; background: var(--accent); top: -100px; left: -100px; }
 .bg-glow__circle--2 { width: 500px; height: 500px; background: var(--accent-2); bottom: -200px; right: -150px; animation-delay: -5s; }
@@ -50,14 +46,18 @@ img { pointer-events: none; -webkit-user-drag: none; }
 .header__inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
 .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
 .logo span { color: var(--accent-2); }
+.logo__img { display: block; border-radius: 8px; }
 .nav { display: flex; gap: 24px; }
 .nav a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color 0.2s; }
 .nav a:hover { color: var(--text); }
 
 .header__actions { display: flex; align-items: center; gap: 15px; }
-.header__tg { color: var(--muted); transition: color 0.2s; display: flex; align-items: center; }
-.header__tg:hover { color: var(--accent-2); }
-.header__tg svg { width: 24px; height: 24px; }
+.header__tg { 
+  color: var(--muted); transition: color 0.2s; display: flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.05);
+}
+.header__tg:hover { color: var(--accent-2); background: rgba(0, 209, 178, 0.1); }
+.header__tg svg { width: 20px; height: 20px; }
 
 /* --- Hero --- */
 .hero { padding: 80px 0 100px; }
@@ -77,12 +77,11 @@ img { pointer-events: none; -webkit-user-drag: none; }
 .avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -10px; }
 .avatar:first-child { margin-left: 0; }
 
-/* --- Мокап смартфона (Анимации) --- */
+/* --- Мокап смартфона --- */
 .hero__phone { flex: 1; display: flex; justify-content: center; perspective: 1000px; position: relative; }
 .phone-glow {
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  width: 300px; height: 300px; background: var(--accent-2);
-  filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none;
+  width: 300px; height: 300px; background: var(--accent-2); filter: blur(80px); opacity: 0.2; z-index: 0; pointer-events: none;
 }
 .phone {
   width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px;
@@ -100,18 +99,11 @@ img { pointer-events: none; -webkit-user-drag: none; }
 .chat-header__name { font-weight: 600; font-size: 14px; line-height: 1.2; }
 .chat-body { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; overflow-y: auto; }
 .chat-body::-webkit-scrollbar { display: none; }
-
 .message {
-  padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4;
-  opacity: 0; transform: translateY(10px); position: relative;
-  animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; position: relative;
+  opacity: 0; transform: translateY(10px); animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-.typing::after {
-  content: '|'; color: inherit; animation: blink 0.8s infinite; font-weight: bold; margin-left: 2px;
-}
-@keyframes blink { 50% { opacity: 0; } }
 @keyframes msgAppear { to { opacity: 1; transform: translateY(0); } }
-
 .message--in { background: var(--card); border-bottom-left-radius: 4px; align-self: flex-start; }
 .message--out { background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-bottom-right-radius: 4px; align-self: flex-end; }
 .chat-input { padding: 15px; background: var(--card); border-top: 1px solid #222; }
@@ -123,16 +115,13 @@ img { pointer-events: none; -webkit-user-drag: none; }
 .marquee__content span { font-size: 18px; font-weight: 600; color: var(--muted); }
 @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* --- Общие стили для секций --- */
+/* --- Общие стили --- */
 .features, .reviews, .faq { padding: 100px 0; }
 h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px; letter-spacing: -0.5px; }
 
 /* --- Features --- */
 .features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-.card {
-  background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px;
-  transition: all 0.3s ease;
-}
+.card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; transition: all 0.3s ease; }
 .card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.05); }
 .card__icon { font-size: 32px; margin-bottom: 16px; }
 .card h3 { font-size: 20px; margin-bottom: 10px; }
@@ -142,9 +131,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .roadmap { padding: 100px 0; background: rgba(0,0,0,0.2); }
 .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
 .roadmap-card { background: var(--card); border: 1px solid var(--card-border); border-radius: 20px; padding: 30px; }
-.roadmap-card__status {
-  display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase;
-}
+.roadmap-card__status { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
 .roadmap-card__status--done { background: rgba(0, 209, 178, 0.15); color: var(--accent-2); }
 .roadmap-card__status--progress { background: rgba(108, 92, 231, 0.15); color: #a29bfe; }
 .roadmap-card__status--planned { background: rgba(255, 255, 255, 0.1); color: var(--muted); }
@@ -178,11 +165,8 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.1); }
 .platform-btn:hover svg, .platform-btn:hover span { fill: var(--text); color: var(--text); }
 
-/* --- FAQ (Улучшенный контраст) --- */
-.faq details {
-  background: var(--card); border: 1px solid var(--card-border); border-radius: 12px;
-  padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s;
-}
+/* --- FAQ --- */
+.faq details { background: var(--card); border: 1px solid var(--card-border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: background 0.2s; }
 .faq details:hover { background: #202432; }
 .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .faq summary::after { content: '+'; font-size: 24px; color: var(--accent-2); transition: transform 0.3s; }
@@ -209,7 +193,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
 .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
-/* --- Модальное окно (Waitlist) --- */
+/* --- Модальное окно --- */
 .modal {
   display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000;
@@ -233,7 +217,6 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 .modal h3 { font-size: 24px; margin-bottom: 10px; }
 .modal p { color: var(--muted); font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
 
-/* Форма в модалке */
 #waitlist-input {
   width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--card-border);
   background: var(--bg); color: var(--text); font-size: 16px; margin-bottom: 15px; outline: none;
@@ -241,7 +224,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
 }
 #waitlist-input:focus { border-color: var(--accent-2); }
 
-/* --- Анимация появления --- */
+/* --- Анимация --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -251,7 +234,7 @@ h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 50px;
   .hero__content { margin-bottom: 40px; }
   .hero__buttons, .hero__social-proof { justify-content: center; }
   .phone-glow { top: 40%; }
-  .header__actions .btn { display: none; } /* Прячем кнопку листа ожидания на мобилке, чтобы не теснить меню */
+  .header__actions .btn { display: none; }
 }
 @media (max-width: 600px) {
   .nav { display: none; }
