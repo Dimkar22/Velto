@@ -53,8 +53,8 @@
     .btn--tg:hover { background: #229ED9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(42, 171, 238, 0.3); }
 
     /* --- Hero --- */
-    .hero { padding: 80px 0 60px; }
-    .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+    .hero { padding: 80px 0 60px; min-height: 80vh; display: flex; align-items: center; }
+    .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%; }
     .hero__content { flex: 1; max-width: 600px; }
     .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(0, 209, 178, 0.15); border: 1px solid rgba(0, 209, 178, 0.3); color: var(--accent-2); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
     .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
@@ -100,7 +100,7 @@
     .quick-feature svg { width: 32px; height: 32px; fill: var(--accent-2); }
 
     /* --- Общие стили секций --- */
-    .section { padding: 80px 0; }
+    .section { padding: 80px 0; display: block !important; visibility: visible !important; }
     h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px; letter-spacing: -0.5px; color: #fff; }
 
     /* --- Features & Cards --- */
@@ -112,6 +112,7 @@
       padding: 30px; 
       transition: all 0.3s ease; 
       box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      display: block !important;
     }
     .card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.15); }
     .card__icon { font-size: 32px; margin-bottom: 16px; }
@@ -119,7 +120,7 @@
     .card p { color: #e2e8f0; font-size: 15px; line-height: 1.6; }
 
     /* --- Сравнение --- */
-    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; display: block !important; }
     .comparison-table { width: 100%; border-collapse: collapse; min-width: 600px; }
     .comparison-table th, .comparison-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
     .comparison-table th { color: var(--muted); font-weight: 600; font-size: 14px; text-transform: uppercase; }
@@ -132,7 +133,7 @@
     /* --- Roadmap --- */
     .roadmap { background: rgba(0,0,0,0.2); }
     .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .roadmap-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; position: relative; overflow: hidden; }
+    .roadmap-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; position: relative; overflow: hidden; display: block !important; }
     .roadmap-card__status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
     .roadmap-card__status--done { background: rgba(0, 209, 178, 0.2); color: var(--accent-2); border: 1px solid rgba(0,209,178,0.3); }
     .roadmap-card__status--progress { background: rgba(108, 92, 231, 0.2); color: #a29bfe; border: 1px solid rgba(108,92,231,0.3); }
@@ -176,6 +177,7 @@
       margin-bottom: 12px; 
       transition: all 0.3s ease; 
       overflow: hidden; 
+      display: block !important;
     }
     .faq details:hover { border-color: var(--accent-2); }
     .faq summary { cursor: pointer; padding: 24px; font-weight: 600; font-size: 18px; color: #fff; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
@@ -216,7 +218,7 @@
     .form-note { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: left; }
 
     .modal-block { display: none; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
     /* --- Success State --- */
@@ -235,16 +237,18 @@
       .hero__buttons, .hero__social-proof { justify-content: center; }
       .phone-glow { top: 40%; }
       .header__actions .btn { display: none; }
+      .phone { width: 240px; height: 500px; transform: none; }
     }
     @media (max-width: 600px) {
       .nav { display: none; }
-      .hero { padding: 50px 0; }
+      .hero { padding: 50px 0; min-height: auto; }
       .section { padding: 50px 0; }
       .footer__inner { flex-direction: column; text-align: center; }
       .footer__contacts { justify-content: center; }
       .footer__info { align-items: center; }
       .quick-features__grid { gap: 20px; }
       .btn { width: 100%; margin-bottom: 10px; }
+      .comparison-table { font-size: 14px; }
     }
   </style>
 </head>
