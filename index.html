@@ -21,8 +21,6 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-user-select: none; user-select: none; }
     input, textarea { -webkit-user-select: text; user-select: text; }
-    
-    /* Адаптивный контейнер */
     .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
 
     /* --- Фон --- */
@@ -33,10 +31,11 @@
     @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(50px, 50px); } }
 
     /* --- Шапка --- */
-    .header { position: sticky; top: 0; background: rgba(10, 11, 16, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
+    .header { position: sticky; top: 0; background: rgba(10, 11, 16, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 100; }
     .header__inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
     .logo { font-size: 22px; font-weight: 800; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 10px; }
     .logo span { color: var(--accent-2); }
+    .logo__img { display: block; border-radius: 8px; }
     .nav { display: flex; gap: 24px; }
     .nav a { color: var(--muted); text-decoration: none; font-size: 15px; transition: color 0.2s; font-weight: 500; }
     .nav a:hover { color: var(--text); }
@@ -47,18 +46,20 @@
     .btn--primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff !important; }
     .btn--glow { box-shadow: 0 0 20px rgba(0, 209, 178, 0.3); }
     .btn--glow:hover { box-shadow: 0 0 35px rgba(0, 209, 178, 0.6); transform: translateY(-2px); }
+    .btn--ghost { border: 1px solid var(--border); color: var(--text) !important; background: rgba(255,255,255,0.02); }
+    .btn--ghost:hover { border-color: var(--muted); background: rgba(255,255,255,0.05); }
     .btn--small { padding: 8px 16px; font-size: 14px; }
     .btn--tg { background: #2AABEE; color: #fff !important; border: none; }
-    .btn--tg:hover { background: #229ED9; transform: translateY(-2px); }
+    .btn--tg:hover { background: #229ED9; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(42, 171, 238, 0.3); }
 
     /* --- Hero --- */
     .hero { padding: 80px 0 60px; }
     .hero__inner { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
     .hero__content { flex: 1; max-width: 600px; }
     .badge { display: inline-block; padding: 6px 14px; border-radius: 20px; background: rgba(0, 209, 178, 0.15); border: 1px solid rgba(0, 209, 178, 0.3); color: var(--accent-2); font-size: 13px; font-weight: 600; margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(32px, 6vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
     .hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .hero p { color: var(--muted); font-size: clamp(16px, 2vw, 20px); margin-bottom: 36px; }
+    .hero p { color: var(--muted); font-size: clamp(16px, 2.4vw, 20px); margin-bottom: 36px; }
     .hero__buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
     .hero__social-proof { display: flex; align-items: center; gap: 15px; font-size: 15px; color: var(--muted); }
     .avatars { display: flex; }
@@ -68,71 +69,182 @@
     /* --- Мокап телефона --- */
     .hero__phone { flex: 1; display: flex; justify-content: center; perspective: 1000px; position: relative; }
     .phone-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 350px; height: 350px; background: var(--accent-2); filter: blur(90px); opacity: 0.25; z-index: 0; pointer-events: none; }
-    .phone { width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1; }
+    .phone { width: 280px; height: 580px; background: #000; border-radius: 40px; padding: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.6), 0 0 0 2px #333; position: relative; transform: rotateY(-10deg) rotateX(5deg); transition: transform 0.5s ease; z-index: 1; }
     .phone:hover { transform: rotateY(0deg) rotateX(0deg); }
+    .phone__notch { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 25px; background: #000; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px; z-index: 10; }
     .phone__screen { width: 100%; height: 100%; background: #0f1118; border-radius: 30px; overflow: hidden; display: flex; flex-direction: column; }
+    .chat-header { padding: 40px 20px 15px; background: #1c1f2b; border-bottom: 1px solid #2a2e40; display: flex; align-items: center; gap: 12px; }
+    .chat-header__avatar { width: 35px; height: 35px; background: var(--accent-2); border-radius: 50%; }
+    .chat-header__name { font-weight: 600; font-size: 14px; line-height: 1.2; }
     .chat-body { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 12px; font-size: 13px; overflow-y: auto; }
-    .message { padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; }
-    .message--in { background: #1c1f2b; align-self: flex-start; color: #fff; }
-    .message--out { background: linear-gradient(90deg, var(--accent), var(--accent-2)); align-self: flex-end; color: #fff; }
+    .chat-body::-webkit-scrollbar { display: none; }
+    
+    .message { padding: 10px 14px; border-radius: 16px; max-width: 85%; line-height: 1.4; position: relative; opacity: 0; transform: translateY(10px); animation: msgAppear 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+    @keyframes msgAppear { to { opacity: 1; transform: translateY(0); } }
+    .message--in { background: #1c1f2b; border-bottom-left-radius: 4px; align-self: flex-start; border: 1px solid #2a2e40; color: #fff; }
+    .message--out { background: linear-gradient(90deg, var(--accent), var(--accent-2)); border-bottom-right-radius: 4px; align-self: flex-end; color: #fff; }
+    
+    .typing-dots { display: flex; gap: 4px; align-items: center; height: 18px; padding: 0 5px; }
+    .typing-dots span { width: 6px; height: 6px; background-color: #9ca3af; border-radius: 50%; animation: typing 1.4s infinite ease-in-out both; }
+    .typing-dots span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dots span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
 
-    /* --- Секции --- */
+    .chat-input { padding: 15px; background: #1c1f2b; border-top: 1px solid #2a2e40; }
+    .chat-input__field { background: #0f1118; padding: 10px 15px; border-radius: 20px; color: var(--muted); font-size: 13px; border: 1px solid #2a2e40; }
+
+    /* --- Иконки под героем --- */
+    .quick-features { padding: 40px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .quick-features__grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .quick-feature { display: flex; flex-direction: column; align-items: center; gap: 10px; color: var(--muted); font-size: 14px; font-weight: 500; }
+    .quick-feature svg { width: 32px; height: 32px; fill: var(--accent-2); }
+
+    /* --- Общие стили секций --- */
     .section { padding: 80px 0; }
-    h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px; color: #fff; }
+    h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px; letter-spacing: -0.5px; color: #fff; }
 
-    /* --- Сетки (Адаптивные) --- */
-    .features__grid, .advantages__grid, .roadmap__grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-      gap: 20px; 
-    }
+    /* --- Features & Cards --- */
+    .features__grid, .advantages__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .card { 
-      background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; 
+      background: var(--card-bg);
+      border: 1px solid var(--border); 
+      border-radius: 20px; 
+      padding: 30px; 
       transition: all 0.3s ease; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    .card:hover { border-color: var(--accent-2); transform: translateY(-5px); }
-    .card h3 { font-size: 20px; margin-bottom: 10px; color: #fff; }
-    .card p { color: #e2e8f0; font-size: 15px; }
+    .card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.15); }
+    .card__icon { font-size: 32px; margin-bottom: 16px; }
+    .card h3 { font-size: 20px; margin-bottom: 10px; color: #fff; font-weight: 700; }
+    .card p { color: #e2e8f0; font-size: 15px; line-height: 1.6; }
 
-    /* --- Таблица сравнения (с прокруткой для мобильных) --- */
+    /* --- Сравнение --- */
     .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .comparison-table { width: 100%; border-collapse: collapse; min-width: 600px; }
     .comparison-table th, .comparison-table td { padding: 16px; text-align: left; border-bottom: 1px solid var(--border); }
-    .velto-col { background: rgba(0, 209, 178, 0.05); }
+    .comparison-table th { color: var(--muted); font-weight: 600; font-size: 14px; text-transform: uppercase; }
+    .comparison-table td:first-child { font-weight: 600; color: #fff; }
+    .check { color: var(--accent-2); font-weight: bold; }
+    .cross { color: #ff6b6b; font-weight: bold; }
+    .velto-col { background: rgba(0, 209, 178, 0.05); border-radius: 12px 12px 0 0; }
+    .velto-col-bottom { background: rgba(0, 209, 178, 0.05); border-radius: 0 0 12px 12px; }
+
+    /* --- Roadmap --- */
+    .roadmap { background: rgba(0,0,0,0.2); }
+    .roadmap__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .roadmap-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 30px; position: relative; overflow: hidden; }
+    .roadmap-card__status { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+    .roadmap-card__status--done { background: rgba(0, 209, 178, 0.2); color: var(--accent-2); border: 1px solid rgba(0,209,178,0.3); }
+    .roadmap-card__status--progress { background: rgba(108, 92, 231, 0.2); color: #a29bfe; border: 1px solid rgba(108,92,231,0.3); }
+    .roadmap-card__status--planned { background: rgba(255, 255, 255, 0.1); color: #b0b5c5; border: 1px solid rgba(255,255,255,0.2); }
+    .roadmap-card h3 { font-size: 20px; margin-bottom: 10px; color: #fff; font-weight: 700; }
+    .roadmap-card p { color: #e2e8f0; font-size: 15px; margin-bottom: 25px; }
+    
+    .progress-bar { width: 100%; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin-top: auto; }
+    .progress-bar__fill { height: 100%; border-radius: 4px; }
+    .progress-bar__fill--done { width: 100%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+    .progress-bar__fill--progress { width: 65%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+    /* --- Команда --- */
+    .team__grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
+    .team-member { text-align: center; max-width: 200px; }
+    .team-avatar { width: 100px; height: 100px; border-radius: 50%; background: #2a2c38; margin: 0 auto 15px; border: 2px solid var(--accent-2); display: flex; align-items: center; justify-content: center; font-size: 32px; }
+    .team-member h4 { color: #fff; margin-bottom: 5px; }
+    .team-member p { color: var(--muted); font-size: 14px; }
+
+    /* --- Скачать / Платформы --- */
+    .download { padding: 80px 0; text-align: center; }
+    .download p { color: var(--muted); margin-bottom: 30px; font-size: 18px; }
+    .download__stats { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
+    .stat-item { display: flex; flex-direction: column; align-items: center; }
+    .stat-number { font-size: 40px; font-weight: 800; background: linear-gradient(90deg, var(--accent-2), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+    .platforms { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+    .platform-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; width: 140px; height: 120px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; color: var(--text); cursor: pointer; transition: all 0.3s ease; }
+    .platform-btn svg { width: 46px; height: 46px; transition: fill 0.3s; fill: var(--muted); }
+    .platform-btn span { font-size: 14px; font-weight: 600; color: var(--muted); transition: color 0.3s; }
+    .platform-btn:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0, 209, 178, 0.15); }
+    .platform-btn:hover svg { fill: #fff; }
+    .platform-btn:hover span { color: #fff; }
 
     /* --- FAQ --- */
-    .faq details { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; }
-    .faq summary { cursor: pointer; padding: 20px; font-weight: 600; color: #fff; list-style: none; display: flex; justify-content: space-between; }
-    .faq p { padding: 0 20px 20px; color: #e2e8f0; }
+    .faq details { 
+      background: var(--card-bg); 
+      border: 1px solid var(--border); 
+      border-radius: 12px; 
+      margin-bottom: 12px; 
+      transition: all 0.3s ease; 
+      overflow: hidden; 
+    }
+    .faq details:hover { border-color: var(--accent-2); }
+    .faq summary { cursor: pointer; padding: 24px; font-weight: 600; font-size: 18px; color: #fff; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
+    .faq summary::after { content: '+'; font-size: 26px; color: var(--accent-2); transition: transform 0.3s; font-weight: 400; }
+    .faq details[open] { background: #252938; border-color: var(--accent-2); }
+    .faq details[open] summary { color: var(--accent-2); }
+    .faq details[open] summary::after { transform: rotate(45deg); }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq p { color: #e2e8f0; padding: 0 24px 24px; margin: 0; line-height: 1.6; font-size: 16px; }
 
     /* --- Подвал --- */
     .footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 40px 0; background: rgba(0,0,0,0.3); }
-    .footer__inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
-    .footer__link { color: #fff; text-decoration: none; }
+    .footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; color: var(--muted); font-size: 14px; }
+    .footer__info { display: flex; flex-direction: column; gap: 8px; }
+    .footer__link { color: #ffffff !important; text-decoration: none !important; font-weight: 500; transition: color 0.2s; }
+    .footer__link:hover { color: var(--accent-2) !important; }
+    .footer__contacts { display: flex; gap: 15px; flex-wrap: wrap; }
+    .tg-link { display: inline-flex !important; align-items: center !important; gap: 12px !important; color: #ffffff !important; text-decoration: none !important; font-weight: 600; font-size: 15px; background: rgba(255, 255, 255, 0.05); padding: 8px 18px 8px 8px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); transition: background 0.3s, border-color 0.3s, transform 0.2s; }
+    .tg-link:hover { background: rgba(0, 209, 178, 0.1); border-color: rgba(0, 209, 178, 0.3); transform: translateY(-2px); }
+    .tg-icon-wrap { display: inline-flex !important; align-items: center; justify-content: center; width: 32px !important; height: 32px !important; background: #00d1b2; border-radius: 50%; }
+    .tg-icon { width: 18px !important; height: 18px !important; max-width: 18px !important; max-height: 18px !important; display: block; margin-left: -2px; }
 
     /* --- Модальное окно --- */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; align-items: center; justify-content: center; }
-    .modal.is-active { display: flex; }
-    .modal__content { background: var(--card-bg); border-radius: 24px; padding: 30px; max-width: 420px; width: 90%; position: relative; }
-    .modal__close { position: absolute; top: 15px; right: 15px; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
-    .waitlist-input { width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid var(--border); background: #0f1118; color: #fff; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px); z-index: 1000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+    .modal.is-active { display: flex; opacity: 1; }
+    .modal__content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 40px 30px 30px; max-width: 420px; width: 90%; text-align: center; position: relative; transform: translateY(30px) scale(0.9); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+    .modal.is-active .modal__content { transform: translateY(0) scale(1); }
+    .modal__close { position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: var(--muted); font-size: 28px; cursor: pointer; transition: color 0.2s, transform 0.2s; line-height: 1; }
+    .modal__close:hover { color: var(--text); transform: rotate(90deg); }
+    .modal__icon { font-size: 48px; margin-bottom: 15px; }
+    .modal h3 { font-size: 24px; margin-bottom: 10px; color: #fff; }
+    .modal p { color: #b0b5c5; font-size: 15px; line-height: 1.5; margin-bottom: 20px; }
 
-    /* --- MEDIA QUERIES (АДАПТИВНОСТЬ) --- */
+    .form-group { margin-bottom: 15px; text-align: left; }
+    .form-group label { display: block; font-size: 14px; color: #b0b5c5; margin-bottom: 6px; font-weight: 500; }
+    .waitlist-input { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--border); background: #0f1118; color: var(--text); font-size: 16px; outline: none; transition: border-color 0.2s; font-family: inherit; }
+    .waitlist-input:focus { border-color: var(--accent-2); }
+    .form-note { font-size: 12px; color: var(--muted); margin-top: 10px; text-align: left; }
+
+    .modal-block { display: none; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* --- Success State --- */
+    .success-message { padding: 20px; }
+    .success-message p { margin-bottom: 15px; }
+
+    /* --- Privacy Modal Content --- */
+    .privacy-content { text-align: left; max-height: 60vh; overflow-y: auto; padding-right: 10px; }
+    .privacy-content h4 { color: #fff; margin: 15px 0 5px; }
+    .privacy-content p { font-size: 14px; color: #e2e8f0; margin-bottom: 10px; }
+
+    /* --- АДАПТИВНОСТЬ (Mobile & PC) --- */
     @media (max-width: 900px) {
       .hero__inner { flex-direction: column; text-align: center; }
-      .hero__buttons { justify-content: center; }
-      .hero__social-proof { justify-content: center; }
-      .phone { width: 240px; height: 500px; transform: none; }
-      .phone-glow { width: 250px; height: 250px; }
+      .hero__content { margin-bottom: 40px; }
+      .hero__buttons, .hero__social-proof { justify-content: center; }
+      .phone-glow { top: 40%; }
+      .header__actions .btn { display: none; }
     }
-
     @media (max-width: 600px) {
-      .nav { display: none; } /* Скрываем меню на телефонах */
-      .header__actions .btn { display: none; } /* Или оставляем только кнопку */
-      .hero { padding: 40px 0; }
-      .section { padding: 40px 0; }
+      .nav { display: none; }
+      .hero { padding: 50px 0; }
+      .section { padding: 50px 0; }
       .footer__inner { flex-direction: column; text-align: center; }
-      .btn { width: 100%; margin-bottom: 10px; } /* Кнопки на всю ширину */
+      .footer__contacts { justify-content: center; }
+      .footer__info { align-items: center; }
+      .quick-features__grid { gap: 20px; }
+      .btn { width: 100%; margin-bottom: 10px; }
     }
   </style>
 </head>
@@ -145,12 +257,25 @@
 
   <header class="header">
     <div class="container header__inner">
-      <a href="#" class="logo">Velto<span>.</span></a>
+      <a href="#" class="logo">
+        <svg class="logo__img" width="36" height="36" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect width="100" height="100" rx="20" fill="#0a1210"/>
+          <path d="M50 15C30.67 15 15 28.43 15 45C15 54.5 20.5 63 29 68.5V85L42 75.5C44.5 76 47.2 76.5 50 76.5C69.33 76.5 85 63.07 85 45C85 28.43 69.33 15 50 15Z" fill="#00d1b2"/>
+          <path d="M50 25C35.64 25 24 35.75 24 49C24 56.5 28 63.25 34 67.5V79L44 71.5C46 72 48 72 50 72C64.36 72 76 61.25 76 49C76 35.75 64.36 25 50 25Z" fill="#0a1210"/>
+          <circle cx="36" cy="49" r="5" fill="#ffffff"/>
+          <circle cx="50" cy="49" r="5" fill="#ffffff"/>
+          <circle cx="64" cy="49" r="5" fill="#ffffff"/>
+        </svg>
+        Velto<span>.</span>
+      </a>
+      
       <nav class="nav">
         <a href="#features">Возможности</a>
         <a href="#comparison">Сравнение</a>
+        <a href="#roadmap">Roadmap</a>
         <a href="#faq">FAQ</a>
       </nav>
+
       <div class="header__actions">
         <button type="button" class="btn btn--primary btn--small js-open-modal" data-target="general">В лист ожидания</button>
       </div>
@@ -162,39 +287,87 @@
       <div class="hero__content">
         <div class="badge">⚡ Скоро в RuStore</div>
         <h1>Мессенджер, который <span>не тормозит</span></h1>
-        <p>Доставка сообщений менее 80 мс. Без рекламы. Работает даже при 50 кбит/с.</p>
+        <p>Доставка сообщений менее 80 мс. Без рекламы и трекеров. Работает даже при 50 кбит/с.</p>
+        
         <div class="hero__buttons">
-          <button type="button" class="btn btn--primary btn--glow js-open-modal" data-target="general">Занять место</button>
-          <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--tg">Telegram-канал</a>
+          <button type="button" class="btn btn--primary btn--glow js-open-modal" data-target="general">Занять место в очереди</button>
+          <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--tg">Наш Telegram-канал</a>
+        </div>
+        
+        <div class="hero__social-proof">
+          <div class="avatars">
+            <div class="avatar" style="background: #FF6B6B;"></div>
+            <div class="avatar" style="background: #4ECDC4;"></div>
+            <div class="avatar" style="background: #FFE66D;"></div>
+            <div class="avatar" style="background: #1A535C;"></div>
+          </div>
+          <span>Уже <b>250+</b> человек в бета-тесте</span>
         </div>
       </div>
       
       <div class="hero__phone">
         <div class="phone-glow"></div>
         <div class="phone">
+          <div class="phone__notch"></div>
           <div class="phone__screen">
+            <div class="chat-header">
+              <div class="chat-header__avatar"></div>
+              <div class="chat-header__name">Velto Team <br><span style="font-size:10px; color:#00d1b2;">в сети</span></div>
+            </div>
             <div class="chat-body" id="chat-body"></div>
+            <div class="chat-input">
+              <div class="chat-input__field">Сообщение...</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="quick-features">
+    <div class="container quick-features__grid">
+      <div class="quick-feature">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        <span>Без рекламы</span>
+      </div>
+      <div class="quick-feature">
+        <svg viewBox="0 0 24 24"><path d="M13 2.05v3.03c3.39.49 6 3.39 6 6.92 0 .9-.18 1.75-.48 2.54l2.6 1.53c.56-1.24.88-2.62.88-4.07 0-5.19-3.95-9.45-9-9.95zM12 19c-3.87 0-7-3.13-7-7 0-3.53 2.61-6.43 6-6.92V2.05c-5.06.5-9 4.76-9 9.95 0 5.52 4.48 10 10 10 3.34 0 6.26-1.64 8.06-4.16l-2.6-1.53C16.17 17.98 14.21 19 12 19z"/></svg>
+        <span>Приватность</span>
+      </div>
+      <div class="quick-feature">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+        <span>2G режим</span>
+      </div>
+      <div class="quick-feature">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+        <span>Всего 12 МБ</span>
+      </div>
+    </div>
+  </div>
+
   <section id="features" class="section">
     <div class="container">
-      <h2>Почему Velto?</h2>
+      <h2 class="reveal">Почему Velto?</h2>
       <div class="features__grid">
-        <div class="card">
-          <h3>⚡ Быстро</h3>
-          <p>Доставка сообщений практически мгновенно благодаря современному протоколу.</p>
+        <div class="card reveal">
+          <div class="card__icon">⚡</div>
+          <h3>Доставка < 80 мс</h3>
+          <p>Современный протокол позволяет обмениваться сообщениями практически мгновенно.</p>
         </div>
-        <div class="card">
-          <h3>🛡️ Приватно</h3>
-          <p>Никакой рекламы и сбора данных. Ваши сообщения принадлежат только вам.</p>
+        <div class="card reveal">
+          <div class="card__icon">🛡️</div>
+          <h3>Без рекламы</h3>
+          <p>Мы не собираем данные, не показываем рекламу и не передаем информацию третьим лицам.</p>
         </div>
-        <div class="card">
-          <h3>🪶 Легко</h3>
-          <p>Приложение весит всего 12 МБ и работает даже на старых устройствах.</p>
+        <div class="card reveal">
+          <div class="card__icon">🪶</div>
+          <h3>Всего 12 МБ</h3>
+          <p>Приложение весит копейки и работает даже на старых смартфонах. Быстрая установка.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card__icon">📶</div>
+          <h3>Работает при 2G</h3>
+          <p>Стабильно держит соединение даже при скорости интернета 50 кбит/с.</p>
         </div>
       </div>
     </div>
@@ -202,8 +375,8 @@
 
   <section id="comparison" class="section">
     <div class="container">
-      <h2>Сравнение</h2>
-      <div class="table-wrapper">
+      <h2 class="reveal">Сравнение с другими</h2>
+      <div class="reveal table-wrapper">
         <table class="comparison-table">
           <thead>
             <tr>
@@ -211,20 +384,37 @@
               <th class="velto-col">Velto</th>
               <th>Telegram</th>
               <th>MAX</th>
+              <th>WhatsApp</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Вес приложения</td>
-              <td class="velto-col"><b>12 МБ</b></td>
+              <td class="velto-col-bottom"><b>12 МБ</b></td>
               <td>150+ МБ</td>
               <td>200+ МБ</td>
+              <td>100+ МБ</td>
             </tr>
             <tr>
               <td>Реклама</td>
-              <td class="velto-col">Нет</td>
-              <td>Есть</td>
-              <td>Есть</td>
+              <td class="velto-col-bottom"><span class="check">Нет</span></td>
+              <td><span class="cross">Есть</span></td>
+              <td><span class="cross">Есть</span></td>
+              <td><span class="check">Нет</span></td>
+            </tr>
+            <tr>
+              <td>Работа при 2G</td>
+              <td class="velto-col-bottom"><span class="check">Да</span></td>
+              <td><span class="cross">Плохо</span></td>
+              <td><span class="cross">Плохо</span></td>
+              <td><span class="cross">Плохо</span></td>
+            </tr>
+            <tr>
+              <td>Серверы в РФ</td>
+              <td class="velto-col-bottom"><span class="check">Да</span></td>
+              <td><span class="cross">Нет</span></td>
+              <td><span class="check">Да</span></td>
+              <td><span class="cross">Нет</span></td>
             </tr>
           </tbody>
         </table>
@@ -232,25 +422,151 @@
     </div>
   </section>
 
+  <section id="roadmap" class="section roadmap">
+    <div class="container">
+      <h2 class="reveal">Что уже готово и что дальше</h2>
+      <div class="roadmap__grid">
+        <div class="roadmap-card reveal">
+          <div class="roadmap-card__status roadmap-card__status--done">
+            <span>✅</span> Готово
+          </div>
+          <h3>Веб-версия (Закрытая бета)</h3>
+          <p>Базовый функционал чатов, отправка текста и смайликов. Идет тестирование стабильности.</p>
+          <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--done"></div></div>
+        </div>
+        <div class="roadmap-card reveal">
+          <div class="roadmap-card__status roadmap-card__status--progress">
+            <span>⚙️</span> В разработке
+          </div>
+          <h3>Мобильное приложение</h3>
+          <p>Готовим релиз для iOS и Android (RuStore). Добавляем пуш-уведомления и биометрию.</p>
+          <div class="progress-bar"><div class="progress-bar__fill progress-bar__fill--progress"></div></div>
+        </div>
+        <div class="roadmap-card reveal">
+          <div class="roadmap-card__status roadmap-card__status--planned">
+            <span>📅</span> Планы (Q3 2026)
+          </div>
+          <h3>Групповые звонки</h3>
+          <p>Аудио и видео связь до 20 человек, демонстрация экрана и отправка голосовых сообщений.</p>
+          <div class="progress-bar"><div class="progress-bar__fill" style="width: 10%; background: #b0b5c5;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="section">
+    <div class="container">
+      <h2 class="reveal">Кто мы</h2>
+      <div class="team__grid reveal">
+        <div class="team-member">
+          <div class="team-avatar">👨‍💻</div>
+          <h4>Дима</h4>
+          <p>Основатель & Разработчик. Создает быстрые и удобные интерфейсы.</p>
+        </div>
+        <div class="team-member">
+          <div class="team-avatar">🎨</div>
+          <h4>Команда дизайна</h4>
+          <p>Отвечает за минимализм и удобство каждого пикселя в приложении.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="download" class="section download">
+    <div class="container download__inner reveal">
+      <h2>Начни общаться прямо сейчас</h2>
+      <p>Выбери удобную платформу и займи место в очереди</p>
+      
+      <div class="download__stats">
+        <div class="stat-item">
+          <span class="stat-number">250+</span>
+          <span class="stat-label">в бета-тесте</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">5K+</span>
+          <span class="stat-label">сообщений в бете</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">99%</span>
+          <span class="stat-label">стабильность</span>
+        </div>
+      </div>
+
+      <div class="platforms">
+        <button type="button" class="platform-btn js-open-modal" data-target="rustore" aria-label="RuStore">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="6" fill="#0077FF"/>
+            <rect x="8" y="8" width="8" height="8" fill="#ffffff"/>
+          </svg>
+          <span>RuStore</span>
+        </button>
+        
+        <button type="button" class="platform-btn js-open-modal" data-target="ios" aria-label="iOS">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+          <span>iOS</span>
+        </button>
+        
+        <button type="button" class="platform-btn js-open-modal" data-target="pc" aria-label="ПК">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 2H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H3V4h18v12z"/></svg>
+          <span>Компьютер</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
   <section id="faq" class="section faq">
     <div class="container">
-      <h2>Частые вопросы</h2>
-      <details>
-        <summary>Где хранятся данные?</summary>
-        <p>Наши серверы расположены в РФ для максимальной скорости.</p>
-      </details>
-      <details>
-        <summary>Когда выйдет приложение?</summary>
-        <p>Релиз в RuStore запланирован на ближайшие месяцы.</p>
-      </details>
+      <h2 class="reveal">Частые вопросы</h2>
+      <div class="reveal">
+        <details>
+          <summary>Velto бесплатный?</summary>
+          <p>Да, приложение полностью бесплатное. Общайтесь без ограничений.</p>
+        </details>
+        <details>
+          <summary>Чем вы отличаетесь от Telegram или MAX?</summary>
+          <p>Мы фокусируемся на максимальной легкости (12 МБ против 150+ МБ) и работе в условиях плохой связи. У нас нет рекламы, каналов и лишнего шума — только чистое общение.</p>
+        </details>
+        <details>
+          <summary>Где хранятся данные?</summary>
+          <p>Наши серверы расположены в РФ, что обеспечивает высокую скорость доставки сообщений внутри страны и соответствие локальным требованиям.</p>
+        </details>
+        <details>
+          <summary>Есть ли шифрование?</summary>
+          <p>Да, все ваши сообщения защищены современным сквозным шифрованием.</p>
+        </details>
+        <details>
+          <summary>Можно ли экспортировать чаты?</summary>
+          <p>Да, мы верим в свободу данных. Вы сможете выгрузить историю переписки в любой момент.</p>
+        </details>
+        <details>
+          <summary>Когда выйдет приложение?</summary>
+          <p>Мы планируем релиз в RuStore в ближайшие месяцы. Чтобы узнать первым, оставьте свою почту в листе ожидания!</p>
+        </details>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container footer__inner">
-      <div>© 2026 Velto.</div>
-      <div>
-        <a href="#" class="footer__link js-open-modal" data-target="privacy">Политика конфиденциальности</a>
+      <div class="footer__info">
+        <p>© 2026 Velto. Все права защищены.</p>
+        <p class="footer__support">
+          Поддержка: <a href="mailto:Velto22@yandex.com" class="footer__link">Velto22@yandex.com</a>
+        </p>
+        <div style="margin-top: 10px; font-size: 12px;">
+          <a href="#" class="footer__link js-open-modal" data-target="privacy">Политика конфиденциальности</a> • 
+          <a href="#" class="footer__link">Условия использования</a>
+        </div>
+      </div>
+      <div class="footer__contacts">
+        <a href="https://t.me/VeltoOFF" target="_blank" class="tg-link">
+          <span class="tg-icon-wrap"><svg class="tg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="#ffffff"/></svg></span>
+          Официальный канал
+        </a>
+        <a href="https://t.me/VeltoOfficial_bot" target="_blank" class="tg-link">
+          <span class="tg-icon-wrap"><svg class="tg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" fill="#ffffff"/></svg></span>
+          Официальный бот
+        </a>
       </div>
     </div>
   </footer>
@@ -260,27 +576,72 @@
       <button type="button" class="modal__close js-close-modal">&times;</button>
       
       <div class="modal-block" data-block="general">
-        <h3>Лист ожидания</h3>
+        <div class="modal__icon">📩</div>
+        <h3>Займи место в очереди</h3>
+        <p>Оставь свои данные, и мы сообщим первым, как только Velto выйдет!</p>
+        
         <form id="waitlist-form">
           <input type="hidden" name="access_key" value="3a0a3444-c846-44f1-ba06-e6776093991d">
-          <input type="text" name="name" placeholder="Имя" class="waitlist-input" required>
-          <input type="email" name="email" placeholder="Email" class="waitlist-input" required>
-          <button type="submit" class="btn btn--primary" style="width: 100%">Отправить</button>
+          <input type="hidden" name="subject" value="Новая заявка в Velto">
+          <input type="hidden" name="from_name" value="Velto Landing">
+          
+          <div class="form-group">
+            <label for="user-name">Ваше имя</label>
+            <input type="text" id="user-name" name="name" placeholder="Например, Дмитрий" class="waitlist-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="user-email">Ваш Email</label>
+            <input type="email" id="user-email" name="email" placeholder="you@example.com" class="waitlist-input" required>
+          </div>
+          
+          <button type="submit" class="btn btn--primary btn--glow" style="width: 100%; margin-top: 10px;">Отправить заявку</button>
+          <p class="form-note">Мы используем email только для уведомления о релизе. Никакого спама.</p>
         </form>
       </div>
 
-      <div class="modal-block" data-block="success" style="display:none;">
-        <h3>Успешно!</h3>
-        <p>Мы свяжемся с вами после релиза.</p>
+      <div class="modal-block" data-block="success">
+        <div class="success-message">
+          <div class="modal__icon" style="color: #00d1b2;">✅</div>
+          <h3>Ты в списке!</h3>
+          <p>Твоя заявка на доступ к Velto успешно отправлена. Мы напишем тебе, как только приложение будет готово.</p>
+          <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
+        </div>
       </div>
 
-      <div class="modal-block" data-block="privacy" style="display:none;">
-        <h3>Политика конфиденциальности</h3>
-        <p style="font-size: 14px; color: #e2e8f0;">Мы собираем только необходимые данные для работы сервиса...</p>
+      <div class="modal-block" data-block="ios">
+        <div class="modal__icon">🍏</div>
+        <h3>Скоро в App Store!</h3>
+        <p>Мы активно разрабатываем версию для iPhone. Следите за обновлениями в нашем Telegram-канале, чтобы не пропустить релиз!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--tg" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
       </div>
+
+      <div class="modal-block" data-block="pc">
+        <div class="modal__icon">💻</div>
+        <h3>Скоро на компьютере!</h3>
+        <p>Приложение для Windows и macOS уже в разработке. Мы сообщим, как только оно будет готово!</p>
+        <a href="https://t.me/VeltoOFF" target="_blank" class="btn btn--tg" style="width: 100%; margin-top: 10px;">Перейти в Telegram</a>
+      </div>
+
+      <div class="modal-block" data-block="privacy">
+        <div class="modal__icon">🔒</div>
+        <h3>Политика конфиденциальности</h3>
+        <div class="privacy-content">
+          <p>Последнее обновление: 17 ноября 2026 г.</p>
+          <h4>1. Сбор информации</h4>
+          <p>Мы собираем только необходимую информацию для работы мессенджера: ваш номер телефона (для идентификации) и метаданные сообщений (время отправки).</p>
+          <h4>2. Использование данных</h4>
+          <p>Ваши данные используются исключительно для предоставления услуг связи. Мы не продаем и не передаем вашу личную информацию третьим лицам для рекламных целей.</p>
+          <h4>3. Безопасность</h4>
+          <p>Все сообщения защищены сквозным шифрованием. Даже разработчики Velto не имеют доступа к содержанию ваших переписок.</p>
+          <h4>4. Хранение данных</h4>
+          <p>Серверы проекта расположены на территории Российской Федерации. Резервные копии создаются автоматически для предотвращения потери данных.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-</html>
+          </html>
