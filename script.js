@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2. Анимация появления элементов
+  // 2. Анимация появления элементов (упрощенная для надежности)
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -19,8 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+  }, { threshold: 0.05 });
+  
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.style.opacity = '1'; // Принудительно показываем, если JS не сработает
+    revealObserver.observe(el);
+  });
 
   // 3. Работа модального окна
   const modal = document.getElementById('modal-container');
