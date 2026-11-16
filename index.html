@@ -100,13 +100,13 @@
     @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     /* --- Общие стили секций --- */
-    .features, .reviews, .faq, .roadmap { padding: 80px 0; }
+    .features, .advantages, .faq, .roadmap { padding: 80px 0; }
     h2 { text-align: center; font-size: clamp(28px, 4vw, 40px); margin-bottom: 40px; letter-spacing: -0.5px; color: #fff; }
 
-    /* --- ФИКС КОНТРАСТА (Features) --- */
+    /* --- Features --- */
     .features__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
     .card { 
-      background: #1c202d; /* Светлый фон */
+      background: #1c202d;
       border: 1px solid #32384a; 
       border-radius: 20px; 
       padding: 30px; 
@@ -134,13 +134,13 @@
     .progress-bar__fill--done { width: 100%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
     .progress-bar__fill--progress { width: 65%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
-    /* --- Отзывы --- */
-    .reviews__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-    .review-card { background: #1c202d; border: 1px solid #32384a; border-radius: 20px; padding: 30px; }
-    .review-card__text { font-size: 16px; margin-bottom: 20px; line-height: 1.6; color: #e2e8f0; }
-    .review-card__author { display: flex; align-items: center; gap: 12px; }
-    .review-card__author b { font-size: 15px; display: block; color: #fff; }
-    .review-card__author span { font-size: 13px; color: #b0b5c5; }
+    /* --- Преимущества (вместо отзывов) --- */
+    .advantages__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .advantage-card { background: #1c202d; border: 1px solid #32384a; border-radius: 20px; padding: 30px; transition: all 0.3s ease; }
+    .advantage-card:hover { border-color: var(--accent-2); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 209, 178, 0.15); }
+    .advantage-card__icon { font-size: 40px; margin-bottom: 20px; }
+    .advantage-card h3 { font-size: 20px; margin-bottom: 12px; color: #fff; font-weight: 700; }
+    .advantage-card p { color: #b0b5c5; font-size: 15px; line-height: 1.6; }
 
     /* --- Скачать / Платформы --- */
     .download { padding: 80px 0; text-align: center; }
@@ -158,7 +158,7 @@
     .platform-btn:hover svg { fill: #fff; }
     .platform-btn:hover span { color: #fff; }
 
-    /* --- ФИКС FAQ --- */
+    /* --- FAQ --- */
     .faq details { 
       background: #1c202d; 
       border: 1px solid #32384a; 
@@ -208,10 +208,9 @@
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-    /* --- Success State (Очередь) --- */
-    .queue-number { font-size: 56px; font-weight: 800; color: var(--accent-2); margin: 15px 0; line-height: 1; text-shadow: 0 0 20px rgba(0,209,178,0.4); }
-    .queue-invite { background: rgba(255,255,255,0.05); border: 1px dashed #32384a; padding: 15px; border-radius: 12px; margin-top: 20px; text-align: left; font-size: 14px; color: #b0b5c5; }
-    .queue-invite b { color: #fff; display: block; margin-bottom: 5px; }
+    /* --- Success State --- */
+    .success-message { padding: 20px; }
+    .success-message p { margin-bottom: 15px; }
 
     @media (max-width: 900px) {
       .hero__inner { flex-direction: column; text-align: center; }
@@ -223,7 +222,7 @@
     @media (max-width: 600px) {
       .nav { display: none; }
       .hero { padding: 50px 0; }
-      .features, .reviews, .faq, .roadmap { padding: 50px 0; }
+      .features, .advantages, .faq, .roadmap { padding: 50px 0; }
       .footer__inner { flex-direction: column; text-align: center; }
       .footer__contacts { justify-content: center; }
       .footer__info { align-items: center; }
@@ -254,7 +253,7 @@
       <nav class="nav">
         <a href="#features">Возможности</a>
         <a href="#roadmap">Roadmap</a>
-        <a href="#reviews">Отзывы</a>
+        <a href="#advantages">Преимущества</a>
         <a href="#faq">FAQ</a>
       </nav>
 
@@ -381,30 +380,39 @@
     </div>
   </section>
 
-  <section id="reviews" class="reviews">
+  <section id="advantages" class="advantages">
     <div class="container">
-      <h2 class="reveal">Что говорят тестировщики</h2>
-      <div class="reviews__grid">
-        <div class="review-card reveal">
-          <div class="review-card__text">"Реально шустрый. Переписываюсь с другом в метро, где связь еле ловит — сообщения доходят моментально. Не то что в ТГ."</div>
-          <div class="review-card__author">
-            <div class="avatar" style="background: #6c5ce7;"></div>
-            <div><b>Максим</b><br><span>Тестировщик</span></div>
-          </div>
+      <h2 class="reveal">На чём строится Velto</h2>
+      <div class="advantages__grid">
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">🏗️</div>
+          <h3>Современные технологии</h3>
+          <p>Используем передовые протоколы передачи данных и оптимизированный код для максимальной производительности на любых устройствах.</p>
         </div>
-        <div class="review-card reveal">
-          <div class="review-card__text">"Скачал, потому что весит 12 МБ. В итоге пользуюсь уже неделю, интерфейс приятный, глаза не устают от темной темы."</div>
-          <div class="review-card__author">
-            <div class="avatar" style="background: #00d1b2;"></div>
-            <div><b>Дарья</b><br><span>Дизайнер</span></div>
-          </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">🔐</div>
+          <h3>Приватность по умолчанию</h3>
+          <p>Ваши данные принадлежат только вам. Никакой слежки, сбора информации или продажи данных рекламодателям.</p>
         </div>
-        <div class="review-card reveal">
-          <div class="review-card__text">"Наконец-то мессенджер без лишнего мусора. Просто чат и всё. Очень жду релиз в RuStore."</div>
-          <div class="review-card__author">
-            <div class="avatar" style="background: #FF6B6B;"></div>
-            <div><b>Дмитрий</b><br><span>Студент</span></div>
-          </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">🎯</div>
+          <h3>Фокус на главном</h3>
+          <p>Мы убрали всё лишнее и оставили только то, что действительно нужно для комфортного общения.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">👥</div>
+          <h3>Сообщество в центре</h3>
+          <p>Развиваем проект вместе с пользователями. Ваши отзывы и предложения напрямую влияют на развитие Velto.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">🌍</div>
+          <h3>Доступность для всех</h3>
+          <p>Работает на слабых устройствах и при плохом интернете. Мессенджер должен быть доступен каждому.</p>
+        </div>
+        <div class="advantage-card reveal">
+          <div class="advantage-card__icon">🚀</div>
+          <h3>Постоянное развитие</h3>
+          <p>Регулярные обновления, новые функции и улучшение стабильности. Мы не стоим на месте.</p>
         </div>
       </div>
     </div>
@@ -522,19 +530,12 @@
       </div>
 
       <div class="modal-block" data-block="success">
-        <div class="modal__icon" style="color: #00d1b2;">✅</div>
-        <h3>Ты в списке!</h3>
-        <p>Твоя заявка на доступ к Velto принята. Мы напишем, как только все будет готово.</p>
-        
-        <div class="queue-number" id="queue-number">#251</div>
-        <p style="font-size: 13px; margin-top: -10px;">Твое место в очереди</p>
-        
-        <div class="queue-invite">
-          <b>Хочешь подняться выше?</b>
-          Пригласи друга по ссылке, и мы дадим тебе приоритетный доступ.
+        <div class="success-message">
+          <div class="modal__icon" style="color: #00d1b2;">✅</div>
+          <h3>Ты в списке!</h3>
+          <p>Твоя заявка на доступ к Velto успешно отправлена. Мы напишем тебе, как только приложение будет готово.</p>
+          <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
         </div>
-
-        <button type="button" class="btn btn--primary btn--glow js-close-modal" style="width: 100%; margin-top: 20px;">Отлично</button>
       </div>
 
       <div class="modal-block" data-block="ios">
@@ -554,149 +555,6 @@
     </div>
   </div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      
-      // 1. Модальное окно
-      const modal = document.getElementById('modal-container');
-      const allBlocks = document.querySelectorAll('.modal-block');
-      const formBlock = document.querySelector('.modal-block[data-block="general"]');
-      const successBlock = document.querySelector('.modal-block[data-block="success"]');
-      const queueNumberEl = document.getElementById('queue-number');
-
-      document.querySelectorAll('.js-open-modal').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const target = btn.getAttribute('data-target');
-          allBlocks.forEach(b => b.style.display = 'none');
-          
-          if (target === 'ios') {
-            document.querySelector('.modal-block[data-block="ios"]').style.display = 'block';
-          } else if (target === 'pc') {
-            document.querySelector('.modal-block[data-block="pc"]').style.display = 'block';
-          } else {
-            formBlock.style.display = 'block';
-            formBlock.querySelector('form').reset(); 
-          }
-          
-          modal.classList.add('is-active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      document.querySelectorAll('.js-close-modal').forEach(btn => btn.addEventListener('click', closeModal));
-      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-      function closeModal() { modal.classList.remove('is-active'); document.body.style.overflow = ''; }
-
-      // 2. Отправка формы Web3Forms
-      const form = document.getElementById('waitlist-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          
-          const formData = new FormData(form);
-          const object = Object.fromEntries(formData);
-          const json = JSON.stringify(object);
-          const submitBtn = form.querySelector('button[type="submit"]');
-          
-          submitBtn.textContent = 'Отправка...';
-          submitBtn.disabled = true;
-
-          fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: json
-          })
-          .then(async (response) => {
-            if (response.status == 200) {
-              const randomNum = Math.floor(Math.random() * 50) + 251;
-              queueNumberEl.textContent = '#' + randomNum;
-              
-              formBlock.style.display = 'none';
-              successBlock.style.display = 'block';
-              form.reset();
-            } else {
-              alert("Ошибка при отправке. Попробуйте позже.");
-            }
-          })
-          .catch(() => {
-            alert("Ошибка сети. Проверьте интернет.");
-          })
-          .finally(() => {
-            submitBtn.textContent = 'Отправить заявку';
-            submitBtn.disabled = false;
-          });
-        });
-      }
-
-      // 3. Анимации и Живой чат с эффектом "Печатает..."
-      const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-      const chatBody = document.getElementById('chat-body');
-      if (chatBody) {
-        const messages = [
-          { text: "Привет! Как тебе новый мессенджер? 👋", type: "in" },
-          { text: "Просто огонь! Очень быстрый 🔥", type: "out" },
-          { text: "А дизайн какой красивый 😍", type: "in" },
-          { text: "Согласен! Переходим всей командой", type: "out" },
-          { text: "Скоро в RuStore, ждем всех!", type: "in" }
-        ];
-        
-        let msgIndex = 0;
-
-        function playChat() {
-          chatBody.innerHTML = '';
-          msgIndex = 0;
-          showNext();
-        }
-
-        function showNext() {
-          if (msgIndex >= messages.length) {
-            setTimeout(playChat, 4000);
-            return;
-          }
-
-          const msg = messages[msgIndex];
-          
-          if (msg.type === 'in') {
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message message--in';
-            typingDiv.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-            chatBody.appendChild(typingDiv);
-            chatBody.scrollTop = chatBody.scrollHeight;
-
-            setTimeout(() => {
-              chatBody.removeChild(typingDiv);
-              addMessage(msg);
-            }, 1500);
-          } else {
-            setTimeout(() => {
-              addMessage(msg);
-            }, 500);
-          }
-        }
-
-        function addMessage(msg) {
-          const msgDiv = document.createElement('div');
-          msgDiv.className = `message message--${msg.type}`;
-          msgDiv.textContent = msg.text;
-          chatBody.appendChild(msgDiv);
-          chatBody.scrollTop = chatBody.scrollHeight;
-          
-          msgIndex++;
-          setTimeout(showNext, 1200);
-        }
-
-        playChat();
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
-</html>
+          </html>
