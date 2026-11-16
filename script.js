@@ -37,6 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('.modal-block[data-block="ios"]').style.display = 'block';
       } else if (target === 'pc') {
         document.querySelector('.modal-block[data-block="pc"]').style.display = 'block';
+      } else if (target === 'privacy') {
+        document.querySelector('.modal-block[data-block="privacy"]').style.display = 'block';
       } else {
         formBlock.style.display = 'block';
         formBlock.querySelector('form').reset();
