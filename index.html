@@ -1507,25 +1507,31 @@
         <h3>Запросить инвайт</h3>
         <p>Веб-версия сейчас доступна по приглашениям. Оставь свои данные, и мы пришлем доступ.</p>
         
-        <form id="web-access-form">
-          <input type="hidden" name="access_key" value="3a0a3444-c846-44f1-ba06-e6776093991d">
-          <input type="hidden" name="subject" value="Запрос доступа к веб-версии Velto">
-          <input type="hidden" name="from_name" value="Velto Web Access">
-          
-          <div class="form-group">
-            <label for="web-name">Ваше имя</label>
-            <input type="text" id="web-name" name="name" placeholder="Например, Дмитрий" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="web-email">Email для получения инвайта</label>
-            <input type="email" id="web-email" name="email" placeholder="you@example.com" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label for="web-telegram">Telegram (необязательно)</label>
-            <input type="text" id="web-telegram" name="telegram" placeholder="@username" class="form-input">
-          </div>
+        <form id="web-access-form" action="https://formspree.io/f/xrpqqele" method="POST">
+  <!-- Скрытое поле для перенаправления обратно на сайт после отправки -->
+  <input type="hidden" name="_next" value="https://dimkar22.github.io/Velto/#web-access?success=true">
+  
+  <!-- Тема письма, которое придет тебе на почту -->
+  <input type="hidden" name="_subject" value="Новый запрос инвайта Velto">
+
+  <div class="form-group">
+    <label for="web-name">Ваше имя</label>
+    <input type="text" id="web-name" name="name" placeholder="Например, Дмитрий" class="form-input" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="web-email">Email для получения инвайта</label>
+    <input type="email" id="web-email" name="email" placeholder="you@example.com" class="form-input" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="web-telegram">Telegram (необязательно)</label>
+    <input type="text" id="web-telegram" name="telegram" placeholder="@username" class="form-input">
+  </div>
+  
+  <button type="submit" class="btn btn--primary btn--glow" style="width: 100%;">Запросить доступ</button>
+  <p class="form-note">Мы отправим ссылку-приглашение на указанный email в течение 24 часов.</p>
+</form>
           
           <button type="submit" class="btn btn--primary btn--glow" style="width: 100%;">Запросить доступ</button>
           <p class="form-note">Мы отправим ссылку-приглашение на указанный email в течение 24 часов.</p>
